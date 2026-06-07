@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link rel="icon" type="image/png" href="./src/images/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="./src/images/favicon.svg" />
+    <link rel="shortcut icon" href="./src/images/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./src/images/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./src/css/styl.css">
+    <link rel="stylesheet" href="./src/output.css">
+    <!-- <link rel="stylesheet" href="./css/home.css"> -->
+     <link rel="stylesheet" href="./src/css/fall_back.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>VICTORIOUS TECH INSTITUTE</title>
+    
+</head>
+<body>
+
+    <!-- HEADER TOP -->
+     <section>
+    <div class="header-top px-4 md:px-8 py-3">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+            <div class="brand-dynamic flex items-center gap-3">
+                <span><img src="./src/images/logo.png" alt="school logo" width="50" height="50" class="rounded-xl object-cover w-12 h-12 md:w-[50px] md:h-[50px]" onerror="this.src='https://placehold.co/50x50?text=VTI'"></span>
+                <div class="dynamic-wrapper flex flex-col leading-tight">
+                    <p class="direct text-[0.7rem] tracking-wide font-semibold text-indigo-300">Probe into</p>
+                    <span id="word-changer" class="text-2xl md:text-3xl font-extrabold bg-gradient-to-r from-white via-purple-300 to-fuchsia-400 bg-clip-text text-transparent">Cases</span>
+                </div>
+            </div>
+            <div class="auth-group flex items-center gap-2 rounded-full py-1.5 px-4">
+                <div class="auth-buttons flex gap-2">
+                    <span class="text-sm font-medium py-1.5 px-3 md:py-[6px] md:px-[14px] rounded-full bg-purple-600 text-white cursor-pointer hover:bg-purple-700 transition">Sign in</span>
+                    <span class="text-sm font-medium py-1.5 px-3 md:py-[6px] md:px-[14px] rounded-full bg-white/5 cursor-pointer hover:bg-purple-500/40 transition">Sign up</span>
+                </div>
+                <span class="user-icon text-2xl text-purple-400 cursor-pointer">
+                    <i class="fa fa-user-circle-o"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- STICKY SEARCH -->
+    <div class="sticky-search-container sticky top-0 z-[1001] py-3 px-4 md:px-8" id="stickySearchContainer">
+        <div class="sticky-search-wrapper max-w-2xl mx-auto w-full">
+            <div class="sticky-search-bar flex items-center w-full rounded-full overflow-hidden">
+                <input type="text" id="globalSearchInput" placeholder="Search products, brands, courses, articles..." class="flex-1 h-11 md:h-[46px] bg-transparent border-none px-5 text-[#eef5ff] text-sm md:text-base outline-none placeholder:text-[#8e9abf]">
+                <img src="./src/images/search-icon.png" alt="search" width="5" height="3" id="searchBtn" class="h-11 md:h-[46px] w-auto object-cover cursor-pointer px-4" onerror="this.src='https://placehold.co/45x43?text=🔍'">
+            </div>
+        </div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <div class="navi sticky z-[1000] py-2 px-3 md:px-4" id="navContainer">
+        <div class="hamburger-wrapper hidden justify-start pb-1">
+            <button class="hamburger-btn bg-purple-500/25 border-none text-purple-400 text-2xl cursor-pointer py-1.5 px-5 rounded-full flex items-center gap-2 hover:bg-purple-500/50 transition" id="hamburgerToggleBtn">
+                <i class="fa fa-bars" id="barsIcon"></i>
+                <i class="fa fa-times close-icon hidden" id="closeIcon"></i>
+                <span class="text-sm">Menu</span>
+            </button>
+        </div>
+        <div class="scroll-nav-wrapper w-full overflow-x-auto overflow-y-hidden" id="scrollNavWrapper">
+            <div class="scroll-nav flex flex-nowrap gap-2 py-2 px-1 min-w-max" id="scrollNav">
+                <!-- Nav buttons will be populated from JSON -->
+            </div>
+        </div>
+    </div>
+ 
+ </section>
+
+    <main class="max-w-7xl mx-auto py-6 px-4 md:px-6 lg:px-8" id="app-root">
+        <!-- All tab content will be dynamically rendered from JSON -->
+    </main>
+   <div>
+        <p class="text-center text-sm text-gray-500 mt-4">
+          Copyright 2026 VICTORIOUS TECH .COM
+        </p>
+    </div>
+    <script src="./src/JS/app.js"></script>
+</body>
+</html>
