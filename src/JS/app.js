@@ -11,9 +11,9 @@
             home: {
                 title: "VICTORIOUS TECH INSTITUTE",
                 subtitle: "Where knowledge meets <span class='text-purple-400'>innovation</span> & <span class='text-sky-400'>vision</span>.",
-                description: "Explore cases,books, assessment tools, and scholarly articles. This portal is designed for law student research,and first learning.",
+                description: "Explore cases,books, assessment tools, and scholarly articles. This portal is designed for law student research,and inovation.",
                 buttons: [
-                    { text: "✨ Discover Projects", action: "projects" },
+                    { text: "✨ Discover Projects", action: "Cases" },
                     { text: "📚 Exam Resources", action: "exams" }
                 ]
             },
