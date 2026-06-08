@@ -11,7 +11,7 @@
             home: {
                 title: "VICTORIOUS TECH INSTITUTE",
                 subtitle: "Where knowledge meets <span class='text-purple-400'>innovation</span> & <span class='text-sky-400'>vision</span>.",
-                description: "Explore curated projects, published books, assessment tools, and scholarly articles. This portal is designed for researchers, educators, and lifelong learners.",
+                description: "Explore cases,books, assessment tools, and scholarly articles. This portal is designed for law student research,and first learning.",
                 buttons: [
                     { text: "✨ Discover Projects", action: "projects" },
                     { text: "📚 Exam Resources", action: "exams" }
@@ -44,9 +44,9 @@
             articles: {
                 title: "✍️ Recent Publications",
                 items: [
-                    { text: "“Decentralized Credentials” – Journal of Academic Innovation, 2025" },
-                    { text: "“Metaverse in Higher Ed” – Digital Learning Review" },
-                    { text: "“Ethical Dimensions of AI Tutors” – Ethics & Tech Quarterly" }
+                    { text: "“Procrastination as an academic grave” – Journal of Academic Innovation, 2026" },
+                    { text: "“Brain hacks” - The secret to Acing law Exams" },
+                    { text: "“Be your own Accountant” – Ethical ways to take reponsibilities of your actions" }
                 ]
             },
             exams: {
