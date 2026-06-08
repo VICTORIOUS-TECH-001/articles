@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Victorious Tech Legal Library</title>
+    <link rel="icon" type="image/png" href="./src/images/favicon-96x96.png" sizes="96x96" /> 
+    <link rel="icon" type="image/svg+xml" href="./src/images/favicon.svg" />
+    <link rel="stylesheet" href="./src/css/aticle.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+    
+</head>
+<body>
+
+<!-- ANIMATED ORBS BACKGROUND (floating aesthetic) -->
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<!-- PRELOADER (exactly as provided, with logo, text, dots and animations) -->
+<div id="preloader">
+    <div class="preloader-content">
+        <div class="vt-logo"><span>VT</span></div>
+        <div class="preloader-text">VICTORIOUS TECH</div>
+        <div class="preloader-sub">Legal Intelligence Hub</div>
+        <div class="preloader-dots"><span></span><span></span><span></span></div>
+    </div>
+</div>
+<nav class="vt-header fixed top-0 w-full z-50 px-6 py-3">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <div class="flex items-center gap-2">
+            <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-white font-bold text-lg shadow-lg">VT</div>
+            <span class="font-semibold text-white text-xl tracking-tight">VICTORIOUS<span class="text-slate-400 text-sm font-normal">| Legal Library</span></span>
+        </div>
+        <div class="flex gap-6 items-center">
+           <a href="./index.html"> <button  class="nav-tab text-slate-300 hover:text-white font-medium text-sm pb-1 ">Home</button></a>
+            <button id="navLibraryBtn" class="nav-tab text-slate-300 hover:text-white font-medium text-sm pb-1 active">📚 Library</button>
+            <button id="navDashboardBtn" class="nav-tab text-slate-300 hover:text-white font-medium text-sm pb-1">📋 My Dashboard</button>
+            <button id="navAdminBtn" class="bg-slate-800/70 hover:bg-slate-700 border border-slate-600 px-4 py-1.5 rounded-full text-sm font-medium text-slate-200 transition"><i class="fas fa-gavel mr-1"></i> Admin</button>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<div class="hero-section pt-24 pb-6 px-5">
+    <div class="max-w-6xl mx-auto text-center">
+        <div class="inline-flex items-center gap-2 bg-black/40 backdrop-blur-md rounded-full px-5 py-1.5 border border-slate-700 mb-4">
+            <i class="fas fa-balance-scale text-indigo-400 text-sm"></i>
+            <span class="text-xs font-medium text-slate-300">Victorious Tech Institute</span>
+        </div>
+        <h1 class="text-5xl md:text-6xl font-bold tracking-tight bg-gradient-to-r from-slate-100 to-indigo-300 bg-clip-text text-transparent">Legal Articles Library</h1>
+        <p class="text-slate-400 max-w-2xl mx-auto mt-3 text-lg"> save to your personal dashboard with secure key</p>
+    </div>
+</div>
+
+<!-- Main Library View with fixed search -->
+<div id="libraryView" class="content-wrapper pb-16 px-5 max-w-7xl mx-auto">
+    <div class="fixed-search-wrapper">
+        <div class="search-glass max-w-md mx-auto flex items-center gap-3 px-5 py-2.5">
+            <i class="fas fa-search text-indigo-400 text-lg"></i>
+            <input type="text" id="searchInput" placeholder="Search articles by title, area of law..." class="w-full bg-transparent border-0 focus:ring-0 text-slate-100 text-base">
+        </div>
+    </div>
+    <div id="articlesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mt-5"></div>
+</div>
+
+<!-- USER DASHBOARD VIEW -->
+<div id="dashboardView" class="content-wrapper hidden pb-16 px-5 max-w-7xl mx-auto">
+    <div class="text-center mb-10">
+        <h2 class="text-4xl font-bold text-white"><i class="fas fa-user-circle text-indigo-400 mr-3"></i> My Saved Articles</h2>
+        <p class="text-slate-400 mt-2">PDFs you've unlocked and saved will appear here</p>
+    </div>
+    <div id="savedGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7"></div>
+    <div id="emptyDashboardMsg" class="text-center py-20 hidden">
+        <i class="fas fa-folder-open text-6xl text-slate-600 mb-4"></i>
+        <p class="text-slate-500">No saved articles yet. Browse the library and click "Save" after entering the download key.</p>
+    </div>
+</div>
+
+<!-- Admin Modal -->
+<div id="adminModal" class="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center z-50 hidden">
+    <div class="bg-slate-900 rounded-2xl max-w-2xl w-full mx-4 p-6 max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-700">
+        <div class="flex justify-between items-center mb-5 border-b border-slate-700 pb-3">
+            <h2 class="text-2xl font-bold text-white"><i class="fas fa-gavel text-indigo-400 mr-2"></i> Admin Console</h2>
+            <button id="closeAdminBtn" class="text-slate-400 hover:text-white text-3xl leading-5">&times;</button>
+        </div>
+        <div id="adminLoginArea">
+            <label class="block font-semibold text-slate-300 mb-1">Master Password</label>
+            <input type="password" id="adminPassword" class="w-full p-3 bg-slate-800 border border-slate-600 rounded-xl mb-3 text-white" placeholder="Enter admin password">
+            <button id="loginAdminBtn" class="w-full bg-indigo-700 hover:bg-indigo-800 text-white py-3 rounded-xl font-semibold">Unlock Dashboard</button>
+            <div id="loginError" class="text-rose-400 text-sm mt-2 hidden text-center"></div>
+            <div class="mt-5 text-center"><button id="resetPasswordsBtn" class="text-sm  px-5 py-2 rounded-full"></button></div>
+        </div>
+        <div id="adminContentArea" class="hidden">
+            <div class="grid md:grid-cols-2 gap-5 mb-6">
+                <div class="bg-slate-800/60 rounded-xl p-4 border border-slate-700"><h4 class="font-bold mb-3 text-indigo-300"><i class="fas fa-key"></i> Change Admin Password</h4>
+                    <input type="password" id="oldAdminPass" placeholder="Current" class="w-full p-2 bg-slate-900 border border-slate-600 rounded-lg mb-2 text-sm text-white">
+                    <input type="password" id="newAdminPass" placeholder="New (min 4)" class="w-full p-2 bg-slate-900 border border-slate-600 rounded-lg mb-2 text-sm text-white">
+                    <input type="password" id="confirmAdminPass" placeholder="Confirm" class="w-full p-2 bg-slate-900 border border-slate-600 rounded-lg mb-2 text-sm text-white">
+                    <button id="updateAdminPassBtn" class="bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-lg w-full text-sm">Update</button>
+                    <div id="adminPassMsg" class="text-xs mt-2 text-slate-300"></div>
+                </div>
+                <div class="bg-slate-800/60 rounded-xl p-4 border border-slate-700"><h4 class="font-bold mb-3 text-amber-300"><i class="fas fa-download"></i> Change Download Key</h4>
+                    <input type="password" id="oldDownloadPass" placeholder="Current" class="w-full p-2 bg-slate-900 border border-slate-600 rounded-lg mb-2 text-sm text-white">
+                    <input type="password" id="newDownloadPass" placeholder="New (min 4)" class="w-full p-2 bg-slate-900 border border-slate-600 rounded-lg mb-2 text-sm text-white">
+                    <input type="password" id="confirmDownloadPass" placeholder="Confirm" class="w-full p-2 bg-slate-900 border border-slate-600 rounded-lg mb-2 text-sm text-white">
+                    <button id="updateDownloadPassBtn" class="bg-amber-600 hover:bg-amber-700 text-white py-2 rounded-lg w-full text-sm">Update</button>
+                    <div id="downloadPassMsg" class="text-xs mt-2 text-slate-300"></div>
+                </div>
+            </div>
+            <div class="mb-6 border-b border-slate-700 pb-5"><h4 class="font-bold mb-3 text-white">📤 Upload New PDF</h4>
+                <input type="text" id="newTitle" placeholder="Title" class="w-full p-3 bg-slate-800 border border-slate-600 rounded-xl mb-2 text-white">
+                <textarea id="newContent" placeholder="Description" rows="2" class="w-full p-3 bg-slate-800 border border-slate-600 rounded-xl mb-2 text-white"></textarea>
+                <input type="text" id="newArea" placeholder="Area of Law" class="w-full p-3 bg-slate-800 border border-slate-600 rounded-xl mb-2 text-white">
+                <input type="text" id="newKeywords" placeholder="Keywords" class="w-full p-3 bg-slate-800 border border-slate-600 rounded-xl mb-2 text-white">
+                <div id="dropZone" class="drop-zone p-5 text-center mb-3 text-slate-300"><i class="fas fa-file-pdf text-3xl text-indigo-400 mb-2"></i><p class="text-sm">Drag & drop PDF (Max 1MB)</p><input type="file" id="pdfFile" accept=".pdf" class="hidden"><div id="uploadStatus" class="text-sm mt-2 text-cyan-400"></div></div>
+                <button id="uploadArticleBtn" class="w-full bg-indigo-700 hover:bg-indigo-800 text-white py-2.5 rounded-xl font-semibold">📤 Publish</button>
+            </div>
+            <div><h4 class="font-bold mb-3 text-white">📋 Manage Articles</h4><div id="adminArticlesList" class="space-y-2 max-h-64 overflow-y-auto border border-slate-700 rounded-xl p-3 bg-slate-800/40"></div></div>
+        </div>
+    </div>
+</div>
+
+<!-- PDF Viewer Modal -->
+<div id="pdfModal" class="fixed inset-0 bg-black/90 backdrop-blur-lg flex items-center justify-center z-50 hidden">
+    <div class="bg-slate-800 rounded-2xl max-w-5xl w-full mx-4 p-5 max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-600">
+        <div class="flex justify-between items-center mb-3"><h3 id="pdfTitle" class="text-xl font-bold text-white">PDF Viewer</h3><button id="closePdfBtn" class="text-slate-400 text-3xl hover:text-white">&times;</button></div>
+        <div class="flex justify-center gap-3 mb-4 flex-wrap">
+            <button id="prevPageBtn" class="bg-indigo-800 text-indigo-200 px-4 py-1.5 rounded-full text-sm">◀ Prev</button>
+            <span id="pageInfo" class="text-slate-300">Page 1 / 0</span>
+            <button id="nextPageBtn" class="bg-indigo-800 text-indigo-200 px-4 py-1.5 rounded-full text-sm">Next ▶</button>
+            <button id="zoomInBtn" class="bg-slate-700 text-white px-3 py-1.5 rounded-full text-sm">Zoom +</button>
+            <button id="zoomOutBtn" class="bg-slate-700 text-white px-3 py-1.5 rounded-full text-sm">Zoom -</button>
+        </div>
+        <div class="text-center"><canvas id="pdfCanvas" class="pdf-canvas rounded-lg shadow-md"></canvas></div>
+    </div>
+</div>
+
+<!-- Download Modal (Save to Dashboard) -->
+<div id="downloadModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 hidden">
+    <div class="bg-slate-800 rounded-2xl max-w-md w-full mx-4 p-6 shadow-xl border border-slate-700">
+        <h3 class="text-xl font-bold text-white mb-2"><i class="fas fa-save text-amber-400"></i> Save to My Dashboard</h3>
+        <p class="text-slate-400 text-sm mb-4">Enter the download key to save this PDF to your personal library.</p>
+        <input type="password" id="downloadKeyInput" class="w-full p-3 bg-slate-900 border border-slate-600 rounded-xl mb-4 text-white" placeholder="Download key">
+        <button id="confirmDownloadBtn" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-xl font-semibold">Unlock & Save</button>
+        <button id="closeDownloadModalBtn" class="w-full mt-2 text-slate-400 text-sm py-2 hover:text-white">Cancel</button>
+        <div id="downloadError" class="text-rose-400 text-sm mt-2 hidden text-center"></div>
+    </div>
+</div>
+
+<script src="./src/JS/art.js"></script>
+</body>
+</html>

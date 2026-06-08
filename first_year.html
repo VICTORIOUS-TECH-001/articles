@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <link rel="icon" type="image/svg+xml" href="#">
+  <link rel="shortcut icon" href="#">
+  <title>VICTORIOUS TECH INSTITUTE | Semester Portal</title>
+  <!-- Tailwind + Fonts -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" type="image/svg+xml" href="./src/images/favicon.svg" />
+  <link rel="shortcut icon" href="./src/images/favicon.ico" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <!-- Font Awesome 4 (icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="./src/css/first_year.css">
+</head>
+<body>
+  <div id="preloader">
+    <div class="preloader-content">
+      <div class="vt-logo"><span>VT</span></div>
+      <div class="preloader-text">VICTORIOUS TECH</div>
+      <div class="preloader-sub">Legal Intelligence Hub</div>
+      <div class="preloader-dots"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+  <div class="main_container">
+    <nav class="navbar-glass w-full py-3 md:py-4 px-5 md:px-8 transition-all duration-300">
+      <div class="max-w-7xl mx-auto flex items-center justify-between flex-wrap">
+        <!-- Logo / Brand Area -->
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-500 to-indigo-600 flex items-center justify-center shadow-lg">
+            <span class="text-white font-bold text-xl">
+              <img src="./src/images/logo.png" alt="" class="w-7 h-7 object-cover rounded-xl" onerror="this.src='https://placehold.co/20x20?text=VTI'">
+            </span>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-white font-bold text-lg tracking-tight leading-tight">VICTORIOUS TECH</span>
+            <span class="text-[10px] font-medium text-emerald-300/80 tracking-wider -mt-0.5">INSTITUTE</span>
+          </div>
+        </div>
+        <div class="hidden md:flex items-center space-x-7">
+          <a href="#" class="nav-link text-white/80 hover:text-white text-sm font-medium transition">Home</a>
+          <a href="#" class="nav-link text-white/80 hover:text-white text-sm font-medium transition">Academics</a>
+          <a href="#" class="nav-link text-white/80 hover:text-white text-sm font-medium transition">Semesters</a>
+          <a href="#" class="nav-link text-white/80 hover:text-white text-sm font-medium transition">Resources</a>
+          <a href="#" class="nav-link text-white/80 hover:text-white text-sm font-medium transition">Contact</a>
+          <div class="h-6 w-px bg-white/20 mx-1"></div>
+          <button class="bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full px-4 py-1.5 text-xs font-semibold text-white border border-white/20 transition-all duration-200 flex items-center gap-2">
+            <i class="fa fa-user-circle-o" aria-hidden="true"></i> Portal
+          </button>
+        </div>
+        <button id="mobileMenuBtn" class="mobile-menu-btn md:hidden text-white/80 hover:text-white focus:outline-none transition text-2xl">
+          <i class="fa fa-bars" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div id="mobileMenu" class="md:hidden hidden flex-col mt-4 pt-3 border-t border-white/10 space-y-3 pb-2 transition-all duration-200">
+        <a href="./index.html" class="nav-link text-white/80 hover:text-white text-sm font-medium px-2 py-1 block">Home</a>
+        <a href="#" class="nav-link text-white/80 hover:text-white text-sm font-medium px-2 py-1 block">past questions</a>
+        <a href="#" class="nav-link text-white/80 hover:text-white text-sm font-medium px-2 py-1 block">Resources</a>
+        <a href="#" class="nav-link text-white/80 hover:text-white text-sm font-medium px-2 py-1 block">Contact</a>
+        <div class="pt-2">
+          <button class="bg-white/10 hover:bg-white/20 w-full backdrop-blur-sm rounded-full px-4 py-2 text-xs font-semibold text-white border border-white/20 transition-all flex items-center justify-center gap-2">
+            <i class="fa fa-user-circle-o" aria-hidden="true"></i> Dashboard
+          </button>
+        </div>
+      </div>
+    </nav>
+    
+    <section class="firstY min-h-screen flex items-center justify-center p-4 md:p-6 relative" id="modal">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+      <div class="w-full max-w-5xl mx-auto py-4 md:py-8 z-10 relative" id="semesterCardsContainer">
+        <!-- Header section with animated badge -->
+        <div class="text-center mb-10 md:mb-14 animate-fade-up">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 mb-4">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span class="text-xs font-medium text-white/70 tracking-wider" id="academicYearLabel">ACADEMIC YEAR 2025/26</span>
+          </div>
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-white via-emerald-200 to-indigo-300 bg-clip-text text-transparent tracking-tight">
+            Choose Your Semester
+          </h1>
+          <div class="w-24 h-1 bg-gradient-to-r from-emerald-500 to-indigo-500 mx-auto mt-5 rounded-full"></div>
+          <p class="text-gray-400 mt-4 text-sm md:text-base max-w-md mx-auto">Select your academic journey and continue to course materials</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 w-full max-w-4xl mx-auto" id="semestersGrid">
+          
+          <!-- FIRST SEMESTER CARD (emerald theme) -->
+          <div class="glass-card p-6 md:p-8 text-center animate-fade-up delay-100">
+            <div class="icon-wrapper inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-emerald-600/10 mb-5 border border-emerald-500/30 shadow-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+            </div>
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-2 tracking-tight">🌅 FIRST SEMESTER</h2>
+            <div class="w-12 h-0.5 bg-gradient-to-r from-emerald-400 to-transparent mx-auto my-3 rounded-full"></div>
+            <div class="inline-block px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-semibold mb-4 border">🍂 Summer Semester</div>
+            
+            <!-- Date range -->
+            <div class="flex items-center justify-center gap-3 mb-4 flex-wrap">
+              <div class="date-badge"><span>📅</span><span class="text-white/70">January 5th → June 22nd</span></div>
+              <div class="date-badge"><span>⏰</span><span class="text-white/70">5 Months</span></div>
+            </div>
+            
+            <!-- Courses list -->
+            <div class="space-y-2.5 my-6">
+              <div class="course-pill">⚖️ Introduction to Nigeria Legal Method 1</div>
+              <div class="course-pill">🏛️ Nigeria Customary Law Systems</div>
+              <div class="course-pill">✍️ Legal Writing</div>
+            </div>
+            <div class="my-5 pt-3 border-t border-white/10">
+              <div class="flex items-center justify-center gap-2 mb-3">
+                <span class="text-sm font-semibold text-white/80">📌 Key Dates</span>
+              </div>
+              <div class="space-y-2">
+                <div class="flex items-center justify-between text-xs py-1 border-b border-white/5">
+                  <div class="flex items-center gap-1.5"><span class="text-base">🎉</span><span class="text-white/60">Orientation Day</span></div>
+                  <span class="text-white/40 text-xs">February 20</span>
+                </div>
+                <div class="flex items-center justify-between text-xs py-1 border-b border-white/5">
+                  <div class="flex items-center gap-1.5"><span class="text-base">📝</span><span class="text-white/60">Matriculation</span></div>
+                  <span class="text-white/40 text-xs">February 25</span>
+                </div>
+                <div class="flex items-center justify-between text-xs py-1 border-b border-white/5">
+                  <div class="flex items-center gap-1.5"><span class="text-base">📚</span><span class="text-white/60">Exams</span></div>
+                  <span class="text-white/40 text-xs">May 2</span>
+                </div>
+                <div class="flex items-center justify-between text-xs py-1 border-b border-white/5">
+                  <div class="flex items-center gap-1.5"><span class="text-base">📚</span><span class="text-white/60">Exams end</span></div>
+                  <span class="text-white/40 text-xs">June 2</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Stats row -->
+            <div class="flex items-center justify-center gap-4 text-xs text-white/40 my-4">
+              <div class="flex items-center gap-1"><span>🎓</span><span>9 Courses</span></div>
+              <div class="flex items-center gap-1"><span>📊</span><span>17 Unit loads</span></div>
+            </div>
+            <div class="text-xs text-amber-400/60 mb-4 flex items-center justify-center gap-1">
+              <span>📝</span><span>Exams Results Release: June 15</span>
+            </div>
+            
+            <a href="#" class="no-underline">
+              <button class="btn-primary text-white px-6 py-3 rounded-xl w-full transition duration-300 font-semibold flex items-center justify-center gap-2 group mt-2">
+                <span>Enter FIRST SEMESTER</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </a>
+          </div>
+
+          <!-- SECOND SEMESTER CARD (purple/indigo theme) -->
+          <div class="glass-card p-6 md:p-8 text-center animate-fade-up delay-200">
+            <div class="icon-wrapper inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-500/20 to-purple-600/10 mb-5 border border-purple-500/30 shadow-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+              </svg>
+            </div>
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-2 tracking-tight">🌸 SECOND SEMESTER</h2>
+            <div class="w-12 h-0.5 bg-gradient-to-r from-purple-400 to-transparent mx-auto my-3 rounded-full"></div>
+            <div class="inline-block px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30 text-xs font-semibold mb-4 border">🌻 Spring Semester</div>
+            <div class="flex items-center justify-center gap-3 mb-4 flex-wrap">
+              <div class="date-badge"><span>📅</span><span class="text-white/70">June 22 → December</span></div>
+              <div class="date-badge"><span>⏰</span><span class="text-white/70">5 Months</span></div>
+            </div>
+            
+            <!-- Courses list -->
+            <div class="space-y-2.5 my-6">
+              <div class="course-pill">⚖️ Introduction to Nigeria Legal Method 2</div>
+              <div class="course-pill">🏛️ Customary Law & Precedents</div>
+              <div class="course-pill">🔍 Moot Court competitions</div>
+            </div>
+            
+            <!-- Important Dates (Second Semester) -->
+            <div class="my-5 pt-3 border-t border-white/10">
+              <div class="flex items-center justify-center gap-2 mb-3">
+                <span class="text-sm font-semibold text-white/80">📌 Key Dates</span>
+              </div>
+              <div class="space-y-2">
+                <div class="flex items-center justify-between text-xs py-1 border-b border-white/5">
+                  <div class="flex items-center gap-1.5"><span class="text-base">📖</span><span class="text-white/60">Classes Begin</span></div>
+                  <span class="text-white/40 text-xs">June 22</span>
+                </div>
+                <div class="flex items-center justify-between text-xs py-1 border-b border-white/5">
+                  <div class="flex items-center gap-1.5"><span class="text-base">🌸</span><span class="text-white/60">Quiz</span></div>
+                  <span class="text-white/40 text-xs">TBD</span>
+                </div>
+                <div class="flex items-center justify-between text-xs py-1 border-b border-white/5">
+                  <div class="flex items-center gap-1.5"><span class="text-base">📚</span><span class="text-white/60">Final Exams</span></div>
+                  <span class="text-white/40 text-xs">December</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Stats row -->
+            <div class="flex items-center justify-center gap-4 text-xs text-white/40 my-4">
+              <div class="flex items-center gap-1"><span>🎓</span><span>8 Courses</span></div>
+              <div class="flex items-center gap-1"><span>📊</span><span>17 Unit loads</span></div>
+            </div>
+            
+            <!-- Exam period -->
+            <div class="text-xs text-amber-400/60 mb-4 flex items-center justify-center gap-1">
+              <span>📝</span><span>Exams Results Release: January 2026</span>
+            </div>
+            
+            <a href="./method.html" class="no-underline">
+              <button class="btn-secondary text-white px-6 py-3 rounded-xl w-full transition duration-300 font-semibold flex items-center justify-center gap-2 group mt-2">
+                <span>Enter SECOND SEMESTER</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Footer & Copyright -->
+        <div class="mt-12 text-center">
+          <center class="text-purple-300/70 text-xs tracking-wide">copyright &copy; 2026 Victorious Tech Institute.com. All rights reserved.</center>
+        </div>
+      
+      </div>
+    </section>
+  </div>
+
+  <script src="./src/JS/script.js"></script>
+</body>
+</html>

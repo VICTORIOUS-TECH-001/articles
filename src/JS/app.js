@@ -1,13 +1,22 @@
   const siteData = {
             navItems: [
                 { id: "home", label: "Home" },
+                { id: "Dashboard", label: "Dashboard" },
                 { id: "projects", label: "Cases" },
                 { id: "books", label: "Books" },
-                { id: "test", label: "Tests" },
+                { id: "Past Questions", label: "Past Questions" },
                 { id: "articles", label: "Articles" },
                 { id: "exams", label: "Exams" },
+                { id: "contact", label: "Contact" },
+                { id: "E-books", label: "E-books" },
+                { id: "Webinars", label: "Webinars" },
+                { id: "Moot Court", label: "Moot Court Updates" },
+                { id: "Scholarships", label: "Scholarships" },
+                { id: "AI Tutor", label: "AI Tutor" },
+                { id: "Coursesr", label: "Courses" },
                 { id: "contact", label: "Contact" }
             ],
+
             home: {
                 title: "VICTORIOUS TECH INSTITUTE",
                 subtitle: "Where knowledge meets <span class='text-purple-400'>innovation</span> & <span class='text-sky-400'>vision</span>.",
@@ -18,9 +27,9 @@
                 ]
             },
             projects: {
-                title: "🚀 Research Projects",
+                title: "🚀 Click to visit cases and Your Materials",
                 items: [
-                    { title: "LAW", description: "Law and schools of Thoughts", link: "../law/law_projects.html", target: "_blank" }
+                    { title: "LAW", description: "Choose you level and select semester to get cases according to topics & branch of law"}
                 ]
             },
             books: {
@@ -111,7 +120,6 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
                             ${siteData.projects.items.map(item => `
                                 <div class="grid-item">
-                                    <a href="${item.link}" target="${item.target || '_self'}" class="no-underline">
                                         <h3 class="text-xl font-bold text-white">${item.title}</h3>
                                         <p class="text-white/90">${item.description}</p>
                                     </a>
@@ -225,7 +233,7 @@
         }
 
         // Word changer (preserved)
-        const words = ["Cases", "Books", "Articles"];
+        const words = ["Cases", "Books", "Articles","Jugdments"];
         let currentIndex = 0;
         const wordElement = document.getElementById("word-changer");
         function startWordLoop() {
@@ -356,4 +364,112 @@
         });
         
         window.addEventListener('load', setStickyOffsets);
-        window.addEventListener('resize', setStickyOffsets);
+          window.addEventListener('resize', setStickyOffsets);
+          (function() {
+      const createElegantNotice = (msg, type = 'default') => {
+        const toast = document.createElement('div');
+        toast.innerText = msg;
+        toast.style.position = 'fixed';
+        toast.style.bottom = '28px';
+        toast.style.left = '50%';
+        toast.style.transform = 'translateX(-50%)';
+        toast.style.backgroundColor = '#1e1a2f';
+        toast.style.backdropFilter = 'blur(16px)';
+        toast.style.color = type === 'case' ? '#f0c4e8' : '#d9c9ff';
+        toast.style.padding = '10px 24px';
+        toast.style.borderRadius = '100px';
+        toast.style.fontSize = '0.75rem';
+        toast.style.fontWeight = '500';
+        toast.style.fontFamily = "'Inter', system-ui";
+        toast.style.border = type === 'case' ? '1px solid rgba(236, 72, 153, 0.5)' : '1px solid rgba(168, 85, 247, 0.5)';
+        toast.style.boxShadow = '0 8px 22px -6px rgba(0, 0, 0, 0.4)';
+        toast.style.zIndex = '9999';
+        toast.style.letterSpacing = '0.3px';
+        toast.style.pointerEvents = 'none';
+        document.body.appendChild(toast);
+        setTimeout(() => {
+          toast.style.transition = 'opacity 0.4s ease';
+          toast.style.opacity = '0';
+          setTimeout(() => toast.remove(), 500);
+        }, 1900);
+      };
+      
+      // Attach to all "Explore Slides" buttons
+      document.querySelectorAll('.btn-slide').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const parentCard = btn.closest('.law-card');
+          const title = parentCard?.querySelector('h2')?.innerText || 'Legal doctrine';
+          console.log(`[Juris] Accessing lecture slides: ${title}`);
+          createElegantNotice(`📽️ Opening slide deck for "${title}" — interactive materials`, 'slide');
+        });
+      });
+      
+      // Attach to all "Explore Cases" buttons
+      document.querySelectorAll('.btn-case').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const parentCard = btn.closest('.law-card');
+          const title = parentCard?.querySelector('h2')?.innerText || 'Legal doctrine';
+          console.log(`[Juris] Accessing case library: ${title}`);
+          createElegantNotice(`⚖️ Loading landmark cases & precedents for "${title}"`, 'case');
+        });
+      });
+    })();
+      // PRELOADER LOGIC: fade out after page fully loaded
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            if (preloader) {
+                preloader.classList.add('fade-out');
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 700);
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileBtn && mobileMenu) {
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+document.getElementById('articles').addEventListener('click', function() {
+    window.location.href = './Articles.html'; 
+    
+});
+
+      
+        allSlideBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                notifyFeature('📑 Slides & Lecture notes');
+            });
+        });
+        allCaseBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                notifyFeature('⚖️ Landmark Cases & Analysis');
+            });
+        });
+          // PRELOADER LOGIC: fade out after page fully loaded
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            if (preloader) {
+                preloader.classList.add('fade-out');
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 700);
+            }
+        });
+
+
+
+        //     const myma = document.getElementById("");
+        // console.log(myma);
+        // const mymodal = document.getElementById("");
+        // console.log(mymodal);
+
+//        
+               
