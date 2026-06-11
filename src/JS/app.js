@@ -23,7 +23,7 @@
                 description: "Explore cases,books, assessment tools, and scholarly articles. This portal is designed for law student research,and innovation.",
                 buttons: [
                     { text: "✨ Discover Cases", action: "projects" },
-                    { text: "📚 Exam Resources", action: "Exams & Past Questions" }
+                    { text: "📚 Exam Resources", action: "exams" }
                 ]
             },
             projects: {
@@ -58,15 +58,30 @@
                     { text: "“Be your own Accountant” – Ethical ways to take reponsibilities of your actions" }
                 ]
             },
-            exams: {
-                title: "📝 Examination Center",
-                description: "Comprehensive resources for high‑stakes assessments.",
-                items: [
-                    { badge: "NEW", title: "THEORY QUESTIONS", description: "Full-length Legal Method Exam", link: "../law/chapter-1.html", linkText: "Preview" },
-                    { title: "Grading Rubrics", description: "Standardized evaluation metrics for essays with corrections." },
-                    { title: "Past Papers", description: "Archive of UNN 2012–2025 Exam." }
-                ]
-            },
+           exams: {
+                    title: "📝 Examination Center",
+                    description: "Comprehensive resources for high‑stakes assessments.",
+                    items: [
+                        { 
+                            badge: "NEW", 
+                            title: "THEORY QUESTIONS", 
+                            description: "Full-length Legal Method Exam", 
+                            link: "../law/chapter-1.html", 
+                            linkText: "Preview" 
+                        },
+                        { 
+                            title: "Grading Rubrics", 
+                            description: "Standardized multiple-choice question evaluation metrics.",
+                            link: "./Exam_portal.html", 
+                            linkText: "Access Portal" 
+                        },
+                        { 
+                            title: "Past Papers", 
+                            description: "Archive of UNN 2012–2025 Exam." 
+                        }
+                    ]
+                },
+
             contact: {
                 title: "📬 Connect",
                 email: "victoriustech54@gmail.com",
@@ -233,7 +248,7 @@
         }
 
         // Word changer (preserved)
-        const words = ["Cases", "Books", "Articles","Jugdments"];
+        const words = ["Cases", "Books", "Articles"];
         let currentIndex = 0;
         const wordElement = document.getElementById("word-changer");
         function startWordLoop() {
