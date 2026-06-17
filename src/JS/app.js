@@ -89,9 +89,10 @@
             },
             imageGallery: {
                 images: [
-                    "./src/images/PROJECT.png",
-                    "./src/images/PROJECT.png",
-                    "./src/images/PROJECT.png"
+                    "./src/images/Screenshot_2026-06-12_132117-removebg-preview.png",
+                    "./src/images/Screenshot_2026-06-12_132204-removebg-preview.png",
+                    "./src/images/Screenshot_2026-06-12_132634-removebg-preview.png",
+                    "./src/images/Screenshot_2026-06-12_132829-removebg-preview.png"
                 ]
             },
             community: {
@@ -219,10 +220,10 @@
             `;
 
             // Add image galleries (two rows)
-            tabsHtml += `<div class="cards flex flex-wrap justify-center gap-5 my-8 list-none">`;
-            siteData.imageGallery.images.forEach(img => {
-                tabsHtml += `<li><img src="${img}" alt="project" width="300" onerror="this.src='https://placehold.co/300x180?text=Project+Demo'"></li>`;
-            });
+            // tabsHtml += `<div class="cards flex flex-wrap justify-center gap-5 my-8 list-none">`;
+            // siteData.imageGallery.images.forEach(img => {
+            //     tabsHtml += `<li><img src="${img}" alt="project" width="300" onerror="this.src='https://placehold.co/300x180?text=Project+Demo'"></li>`;
+            // });
             tabsHtml += `</div><div class="cards flex flex-wrap justify-center gap-5 my-8 list-none">`;
             siteData.imageGallery.images.forEach(img => {
                 tabsHtml += `<li><img src="${img}" alt="project" width="300" onerror="this.src='https://placehold.co/300x180?text=Project+Demo'"></li>`;
