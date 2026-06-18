@@ -90,7 +90,11 @@
             imageGallery: {
                 images: [
                     "./src/images/Screenshot_2026-06-12_132117-removebg-preview.png",
-                    "./src/images/Screenshot_2026-06-12_132204-removebg-preview.png"
+                    "./src/images/Screenshot_2026-06-12_132204-removebg-preview.png",
+            
+                    "./src/images/Screenshot_2026-06-18_170351-removebg-preview.png",
+                    "./src/images/Screenshot_2026-06-18_170457-removebg-preview.png"
+                
                   
                 
                 ]
