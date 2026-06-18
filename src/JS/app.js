@@ -90,9 +90,9 @@
             imageGallery: {
                 images: [
                     "./src/images/Screenshot_2026-06-12_132117-removebg-preview.png",
-                    "./src/images/Screenshot_2026-06-12_132204-removebg-preview.png",
-                    "./src/images/Screenshot_2026-06-12_132634-removebg-preview.png",
-                    "./src/images/Screenshot_2026-06-12_132829-removebg-preview.png"
+                    "./src/images/Screenshot_2026-06-12_132204-removebg-preview.png"
+                  
+                
                 ]
             },
             community: {
