@@ -18,7 +18,7 @@
             ],
 
             home: {
-                title: "VICTORIOUS TECH INSTITUTE",
+                title: "LEGAL INTELLIGENCE HUB",
                 subtitle: "Where knowledge meets <span class='text-purple-400'>innovation</span> & <span class='text-sky-400'>vision</span>.",
                 description: "Explore cases,books, assessment tools, and scholarly articles. This portal is designed for law student research,and innovation.",
                 buttons: [
