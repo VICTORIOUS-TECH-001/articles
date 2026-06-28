@@ -1,4 +1,4 @@
- const firebaseConfig = {
+  const firebaseConfig = {
     apiKey: "AIzaSyBKBFcZb7Qkw0NZOR-vhQ0hm54GAa_6Zj4",
     authDomain: "victorious-legal-lib.firebaseapp.com",
     projectId: "victorious-legal-lib",
@@ -7,10 +7,12 @@
     appId: "1:52708605227:web:c015708e9013eaee8a996e",
     measurementId: "G-RYL0ZB25EL"
   };
+  
+  // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
 
-  // ---------- PASSWORD UTILITIES (Firestore "passwords" collection) ----------
+  // ---------- PASSWORD UTILITIES ----------
   async function getPlainText(docId) {
     try {
       const docSnap = await db.collection('passwords').doc(docId).get();
@@ -32,6 +34,7 @@
   let allCases = [];
   let unsubscribeCases = null;
   let isAdminLoggedIn = false;
+  let dataLoaded = false;
 
   // User saved dashboard (localStorage)
   let userSaved = JSON.parse(localStorage.getItem('vt_user_saved') || '[]');
@@ -68,7 +71,6 @@
     return true;
   }
 
-  // Helper functions
   function formatDate(dateStr) { if(!dateStr) return "Unknown"; const d = new Date(dateStr); return d.toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' }); }
   function escapeHtml(str) { if(!str) return ''; return str.replace(/[&<>]/g, (m) => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;' }[m] || m)); }
   function showToast(msg, isError = false) { 
@@ -79,7 +81,6 @@
     setTimeout(() => toast.remove(), 5000); 
   }
 
-  // Render public case listings
   function renderPublicCases(searchTerm = "") {
     const container = document.getElementById('casesContainer');
     let filtered = allCases;
@@ -92,10 +93,55 @@
     document.querySelectorAll('.case-card').forEach(card => card.addEventListener('click', (e) => { if(!e.target.closest('button')) openCaseReader(card.dataset.id); }));
   }
 
+  // UPDATED READER: PRESERVES TEXT FORMATTING
   function openCaseReader(caseId) {
     const c = allCases.find(c => c.id === caseId);
     if(!c) return;
-    document.getElementById('readerContent').innerHTML = `<div><h2 class="text-2xl font-bold text-amber-900">${escapeHtml(c.name)}</h2><div class="flex gap-2 my-2">${[c.areaOfLaw, c.court].map(t => `<span class="bg-amber-100 px-2 py-0.5 rounded">${escapeHtml(t)}</span>`).join('')}<span>${formatDate(c.date)}</span></div><div class="mt-4"><h3 class="font-bold">Facts</h3><p class="bg-amber-50 p-3 rounded">${escapeHtml(c.facts)}</p></div><div class="mt-4"><h3 class="font-bold">Issues</h3><p class="bg-amber-50 p-3 rounded">${escapeHtml(c.issues)}</p></div><div class="mt-4"><h3 class="font-bold">Ratio Decidendi and Authorities</h3><div class="bg-amber-100 p-4 border-l-8 border-amber-700 italic">${escapeHtml(c.ratio)}</div></div><div class="mt-3"><strong>Keywords:</strong> ${escapeHtml(c.keywords)}</div><div class="mt-4"><button id="readerSaveBtn" class="bg-amber-600 text-white px-4 py-2 rounded-full text-sm" data-id="${c.id}"><i class="fas fa-save mr-1"></i> Save to My Dashboard</button></div></div>`;
+
+    const formatBlock = (text) => {
+      if (!text) return '';
+      return `<div class="reader-text-block" style="white-space: pre-wrap; word-wrap: break-word; font-family: 'Georgia', serif; line-height: 1.7;">${escapeHtml(text)}</div>`;
+    };
+
+    const content = `
+      <div class="reader-content">
+        <h2 class="text-2xl font-bold text-amber-900">${escapeHtml(c.name)}</h2>
+        <div class="flex flex-wrap gap-2 my-2 text-sm">
+          <span class="bg-amber-100 px-2 py-0.5 rounded">${escapeHtml(c.areaOfLaw)}</span>
+          <span class="bg-amber-100 px-2 py-0.5 rounded">${escapeHtml(c.court)}</span>
+          <span class="text-gray-600">${formatDate(c.date)}</span>
+        </div>
+
+        <div class="mt-5">
+          <div class="heading-holdings">FACTS</div>
+          ${formatBlock(c.facts)}
+        </div>
+
+        <div class="mt-5">
+          <div class="heading-holdings">ISSUES</div>
+          ${formatBlock(c.issues)}
+        </div>
+
+        <div class="mt-5">
+          <div class="heading-holdings">RATIO DECIDENDI & HOLDINGS</div>
+          <div class="ratio-text" style="background: #fbf3e3; padding: 1.2rem 1.8rem; border-left: 8px solid #b45309; white-space: pre-wrap; font-family: 'Georgia', serif; line-height: 1.7;">
+            ${escapeHtml(c.ratio)}
+          </div>
+        </div>
+
+        <div class="mt-4 text-sm text-gray-600">
+          <strong>Keywords:</strong> ${escapeHtml(c.keywords || '')}
+        </div>
+
+        <div class="mt-6">
+          <button id="readerSaveBtn" class="bg-amber-600 text-white px-4 py-2 rounded-full text-sm" data-id="${c.id}">
+            <i class="fas fa-save mr-1"></i> Save to My Dashboard
+          </button>
+        </div>
+      </div>
+    `;
+
+    document.getElementById('readerContent').innerHTML = content;
     document.getElementById('readerModal').classList.remove('hidden');
     document.getElementById('readerSaveBtn')?.addEventListener('click', () => addToDashboard(c.id));
   }
@@ -110,7 +156,6 @@
     document.querySelectorAll('.drawer-case-item').forEach(el => el.addEventListener('click', () => { openCaseReader(el.dataset.id); closeMobileDrawer(); }));
   }
 
-  // Admin Table Render (Edit/Delete)
   function renderAdminTable() {
     const tbody = document.getElementById('adminCasesTableBody');
     if(!tbody) return;
@@ -119,7 +164,6 @@
     document.querySelectorAll('.edit-case-btn').forEach(btn => btn.addEventListener('click', async () => { const id = btn.dataset.id; const cas = allCases.find(c => c.id === id); if(cas){ const newName = prompt("Edit case name", cas.name); if(newName) await db.collection('cases').doc(id).update({ name: newName }).catch(e=>showToast("Edit failed: "+e.message,true)); } }));
   }
 
-  // Firestore realtime listener
   function startCasesListener() {
     if(unsubscribeCases) unsubscribeCases();
     unsubscribeCases = db.collection('cases').orderBy('date', 'desc').onSnapshot(snapshot => {
@@ -128,11 +172,14 @@
       refreshRecent();
       document.getElementById('statCases').innerText = allCases.length + "+";
       if(isAdminLoggedIn && document.getElementById('adminDashboardArea') && !document.getElementById('adminDashboardArea').classList.contains('hidden')) renderAdminTable();
-      updateDashboardUI(); // update dashboard if any case was deleted
+      updateDashboardUI();
+      dataLoaded = true;
+      // Hide preloader once data is loaded
+      const pre = document.getElementById('preloader');
+      if(pre) { pre.classList.add('fade-out'); setTimeout(() => pre.style.display = 'none', 600); }
     }, err => { console.error(err); if(err.code==='permission-denied') showToast("Read permission denied. Check Firestore rules.", true); });
   }
 
-  // Seed initial cases if empty
   async function seedInitialCases() {
     try {
       const snapshot = await db.collection('cases').limit(1).get();
@@ -140,15 +187,16 @@
         const sampleCases = [
           { name: "FRN v. Abacha (1996) 6 NWLR (Pt. 447) 1", areaOfLaw: "Constitutional Law", specificArea: "Fundamental Rights", court: "Supreme Court of Nigeria", date: "2024-05-12", issues: "Whether the suspension of fundamental rights during military regime is constitutional.", facts: "Military decrees ousted court jurisdiction.", ratio: "Human rights cannot be suspended even during military regimes.", keywords: "fundamental rights, decree" },
           { name: "Pinnacle Oil & Gas Ltd v. NNPC (2011) 7 NWLR (Pt. 1247) 1", areaOfLaw: "Contract Law", specificArea: "Breach & Frustration", court: "Supreme Court of Nigeria", date: "2024-05-10", issues: "Whether the contract was frustrated.", facts: "Regulatory changes caused non-performance.", ratio: "Damages for breach are enforceable.", keywords: "contract, oil" },
-          { name: "Ojukwu v. Governor of Lagos State (1986) 3 NWLR (Pt. 26) 39", areaOfLaw: "Constitutional Law", specificArea: "Personal Liberty", court: "Supreme Court of Nigeria", date: "2024-05-05", issues: "Whether the detention was lawful.", facts: "Detained without trial.", ratio: "Right to personal liberty is inviolable.", keywords: "personal liberty, detention" }
+          { name: "Ojukwu v. Governor of Lagos State (1986) 3 NWLR (Pt. 26) 39", areaOfLaw: "Constitutional Law", specificArea: "Personal Liberty", court: "Supreme Court of Nigeria", date: "2024-05-05", issues: "Whether the detention was lawful.", facts: "Detained without trial.", ratio: "Right to personal liberty is inviolable.", keywords: "personal liberty, detention" },
+          { name: "AG Federation v. Attorney General (2020) LPELR-51234(SC)", areaOfLaw: "Constitutional Law", specificArea: "Doctrine of Stare Decisis", court: "Supreme Court of Nigeria", date: "2024-05-01", issues: "Whether a lower court is bound by the ratio decidendi of a higher court even if decided per incuriam.", facts: "The Court of Appeal was torn between two Supreme Court decisions. They attempted to apply the earlier decision.", ratio: `HOLDING's\n(1) The ratio decidendi of a case is the reason for the decision, the principle of the decision. A court in the judicial hierarchy is bound by the ratio decidendi of higher court, not necessarily the obiter dictum.\n(2) It is not open to a lower court to disagree with the decision of a higher court on any point even if the decision of the higher court was reached per incuriam. The only course open to a lower court on any point is to state a case to the higher court for consideration.\n(3) Meaning and import of doctrine of stare decisis - ."Stare decisis" means to abide by former precedents where the same points came again in litigation. It presupposes that the law has been solemnly declared and determined in a previous case. It does preclude the Judges of subordinate courts from changing what has been determined.\n(4) Per OGBUAGU, J.S.C. "Those who think that they are very knowledgeable than this court, if they have listening ears, let them hear and take care. I have gone this far, because the learned justices of the Court of Appeal in University of Ilorin v. Adeniran (supra), who claim or assert to be 'torn between the two judgments of this court.' should please take note and come to terms with the principles or doctrine of stare decisis, precedents and hierarchy of the courts, which are clear and unambiguous. They are an indispensable foundation. For the umpteen time, where there appear to be conflicting judgments of this court, the latter or latest, will or should apply and must be followed if the circumstances are the same."`, keywords: "stare decisis, per incuriam, judicial hierarchy" }
         ];
         for(const c of sampleCases) await db.collection('cases').add(c);
-        showToast("Sample cases added");
+        showToast("Sample cases added with rich formatting");
       }
     } catch(err) { console.warn("Seed failed:", err); }
   }
 
-  // Admin UI & Password Logic
+  // ---------- ADMIN UI LOGIC ----------
   const adminModal = document.getElementById('adminModal');
   const adminLoginDiv = document.getElementById('adminLoginArea');
   const adminDashboardDiv = document.getElementById('adminDashboardArea');
@@ -217,7 +265,7 @@
     } catch(err) { showToast("Add failed: "+err.message, true); }
   });
 
-  // Navigation between Library and Dashboard
+  // Navigation
   const libView = document.getElementById('libraryView');
   const dashView = document.getElementById('dashboardView');
   function showLibrary() { libView.classList.remove('hidden'); dashView.classList.add('hidden'); }
@@ -233,26 +281,28 @@
   closeAdminModal.addEventListener('click', () => adminModal.classList.add('hidden'));
   document.getElementById('searchBtn').addEventListener('click', () => renderPublicCases(document.getElementById('searchInput').value.toLowerCase()));
   document.getElementById('searchInput').addEventListener('keyup', (e) => { if(e.key === 'Enter') renderPublicCases(e.target.value.toLowerCase()); });
-  document.querySelectorAll('.search-tag').forEach(tag => tag.addEventListener('click', () => { document.getElementById('searchInput').value = tag.innerText; renderPublicCases(tag.innerText.toLowerCase()); }));
   document.getElementById('closeReaderBtn').addEventListener('click', () => document.getElementById('readerModal').classList.add('hidden'));
   document.getElementById('readerModal').addEventListener('click', (e) => { if(e.target === document.getElementById('readerModal')) document.getElementById('readerModal').classList.add('hidden'); });
+  
   const mobileMenuBtn = document.getElementById('mobileMenuBtn'), mobileMenu = document.getElementById('mobileMenu');
   if(mobileMenuBtn) mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+  
   const floatBtn = document.getElementById('mobileRecentFloatBtn'), overlay = document.getElementById('mobileRecentOverlay'), closeDrawer = document.getElementById('closeDrawerBtn');
   function closeMobileDrawer() { overlay.classList.remove('show'); }
   floatBtn.addEventListener('click', () => overlay.classList.add('show'));
   closeDrawer.addEventListener('click', closeMobileDrawer);
   overlay.addEventListener('click', (e) => { if(e.target === overlay) closeMobileDrawer(); });
 
-  // Check protocol warning
-  if (window.location.protocol === 'file:') {
-    document.getElementById('protocolWarning').style.display = 'block';
-    console.error("Firebase does not work with file:// protocol. Use a local web server.");
-  }
-
   // Initialize App
   window.addEventListener('load', async () => {
     await seedInitialCases();
     startCasesListener();
-    setTimeout(() => { const pre = document.getElementById('preloader'); if(pre) { pre.classList.add('fade-out'); setTimeout(() => pre.style.display = 'none', 600); } }, 2000);
+    // Fallback: hide preloader after 5 seconds even if data hasn't loaded
+    setTimeout(() => {
+      const pre = document.getElementById('preloader');
+      if(pre && !pre.classList.contains('fade-out')) {
+        pre.classList.add('fade-out');
+        setTimeout(() => pre.style.display = 'none', 600);
+      }
+    }, 5000);
   });
