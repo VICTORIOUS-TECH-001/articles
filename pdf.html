@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>📚 The Library – PDF Thumbnails</title>
+
+    <!-- PDF.js from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js">
+    </script>
+
+    <style>
+        /* ---------- RESET & BASE ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #f6f4f0;
+            color: #1e1a16;
+            min-height: 100vh;
+            padding: 0;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e8e3dc;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #b8aa98;
+            border-radius: 10px;
+        }
+
+        /* ---------- HEADER ---------- */
+        .library-header {
+            background: linear-gradient(145deg, #1e1a16 0%, #2c241e 100%);
+            padding: 32px 24px 28px;
+            position: relative;
+            overflow: hidden;
+        }
+        .library-header::after {
+            content: '';
+            position: absolute;
+            top: -80px;
+            right: -80px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(200, 170, 140, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .library-header .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .brand-icon {
+            font-size: 32px;
+            line-height: 1;
+        }
+        .brand h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #f0ebe4;
+            letter-spacing: -0.5px;
+        }
+        .brand h1 small {
+            font-weight: 400;
+            font-size: 12px;
+            color: #b8aa98;
+            letter-spacing: 0.3px;
+            margin-left: 8px;
+        }
+        .brand .sub {
+            font-size: 12px;
+            color: #b8aa98;
+            font-weight: 400;
+            display: block;
+            margin-top: 1px;
+        }
+
+        .header-stats {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(4px);
+            padding: 6px 16px 6px 18px;
+            border-radius: 60px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            flex-wrap: wrap;
+        }
+        .header-stats .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #d6cec4;
+            font-size: 13px;
+            font-weight: 450;
+        }
+        .header-stats .stat-item strong {
+            color: #f0ebe4;
+            font-weight: 600;
+            font-size: 15px;
+        }
+        .stat-divider {
+            width: 1px;
+            height: 24px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        /* ---------- TOOLBAR ---------- */
+        .toolbar {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 16px 24px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .search-wrap {
+            position: relative;
+            flex: 1;
+            min-width: 160px;
+            max-width: 420px;
+        }
+        .search-wrap input {
+            width: 100%;
+            padding: 10px 14px 10px 40px;
+            border-radius: 60px;
+            border: 1.5px solid #e3dbd2;
+            background: #ffffff;
+            font-size: 14px;
+            font-weight: 450;
+            color: #1e1a16;
+            transition: 0.25s ease;
+            outline: none;
+            font-family: inherit;
+        }
+        .search-wrap input::placeholder {
+            color: #b0a394;
+            font-size: 13px;
+        }
+        .search-wrap input:focus {
+            border-color: #b8aa98;
+            box-shadow: 0 0 0 4px rgba(184, 170, 152, 0.12);
+        }
+        .search-wrap .search-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 16px;
+            color: #b0a394;
+            pointer-events: none;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .filter-group .filter-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: #5c5349;
+            margin-right: 2px;
+        }
+        .filter-chip {
+            padding: 5px 14px;
+            border-radius: 40px;
+            border: 1.5px solid #e3dbd2;
+            background: white;
+            font-size: 12px;
+            font-weight: 500;
+            color: #4d443a;
+            cursor: pointer;
+            transition: 0.2s ease;
+            font-family: inherit;
+            touch-action: manipulation;
+        }
+        .filter-chip:hover {
+            border-color: #b8aa98;
+            background: #fcfaf8;
+        }
+        .filter-chip.active {
+            background: #1e1a16;
+            border-color: #1e1a16;
+            color: #f0ebe4;
+        }
+
+        /* ---------- BOOKSHELF ---------- */
+        .bookshelf {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 24px 50px;
+        }
+
+        .book-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+            gap: 22px 18px;
+        }
+
+        /* ---------- BOOK CARD ---------- */
+        .book-card {
+            background: #ffffff;
+            border-radius: 14px 10px 10px 14px;
+            box-shadow: 0 4px 14px rgba(30, 26, 22, 0.04), 0 1px 3px rgba(30, 26, 22, 0.04);
+            transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            border: 1px solid #eee9e2;
+            overflow: hidden;
+            min-height: 260px;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .book-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 5px;
+            background: var(--spine-color, #b8aa98);
+            border-radius: 10px 0 0 10px;
+            z-index: 2;
+            transition: width 0.2s ease;
+        }
+
+        .book-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(30, 26, 22, 0.08);
+            border-color: #d6cec4;
+        }
+        .book-card:hover::before {
+            width: 7px;
+        }
+        .book-card:active {
+            transform: scale(0.97);
+        }
+
+        /* Thumbnail area */
+        .book-thumbnail {
+            position: relative;
+            width: 100%;
+            padding-top: 130%;
+            /* 1:1.3 aspect ratio */
+            background: var(--cover-bg, #fcfaf8);
+            overflow: hidden;
+            flex-shrink: 0;
+            border-bottom: 1px solid #f0ebe4;
+        }
+
+        .book-thumbnail canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            background: #fcfaf8;
+        }
+
+        .book-thumbnail .thumb-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--cover-bg, #fcfaf8);
+            color: #b0a394;
+            font-size: 28px;
+            transition: opacity 0.4s ease;
+        }
+        .book-thumbnail .thumb-placeholder .loader {
+            width: 28px;
+            height: 28px;
+            border: 3px solid #e3dbd2;
+            border-top: 3px solid #b8aa98;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-bottom: 8px;
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        .book-thumbnail .thumb-placeholder span {
+            font-size: 12px;
+            font-weight: 450;
+            color: #b0a394;
+        }
+
+        .book-thumbnail .thumb-loaded .thumb-placeholder {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .book-thumbnail .thumb-error {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #faf8f6;
+            color: #b0a394;
+            font-size: 32px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .book-thumbnail .thumb-error.show {
+            opacity: 1;
+        }
+        .book-thumbnail .thumb-error span {
+            font-size: 11px;
+            color: #b0a394;
+            margin-top: 4px;
+        }
+
+        /* Book info overlay on thumbnail */
+        .book-info-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 12px 12px 18px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.55) 0%, transparent 100%);
+            z-index: 3;
+            pointer-events: none;
+        }
+        .book-info-overlay .book-title {
+            font-size: 14px;
+            font-weight: 650;
+            color: #fff;
+            line-height: 1.25;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .book-info-overlay .book-author {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8);
+            text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+            margin-top: 2px;
+        }
+
+        /* Category badge on thumbnail */
+        .book-category-badge {
+            position: absolute;
+            top: 8px;
+            right: 10px;
+            font-size: 9px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+            padding: 2px 10px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            z-index: 4;
+            pointer-events: none;
+        }
+
+        /* Footer details */
+        .book-footer {
+            padding: 8px 12px 10px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fcfaf8;
+            gap: 6px;
+            flex-wrap: wrap;
+            flex-shrink: 0;
+        }
+        .book-footer .meta-tag {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 10.5px;
+            font-weight: 500;
+            color: #7a6e5e;
+            background: #f0ebe4;
+            padding: 2px 10px;
+            border-radius: 30px;
+            letter-spacing: 0.2px;
+        }
+        .book-footer .pages-badge {
+            font-size: 10.5px;
+            font-weight: 500;
+            color: #7a6e5e;
+            background: #f0ebe4;
+            padding: 2px 10px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        /* ---------- EMPTY STATE ---------- */
+        .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+            background: white;
+            border-radius: 28px;
+            border: 2px dashed #e3dbd2;
+        }
+        .empty-state .big-icon {
+            font-size: 52px;
+            display: block;
+            margin-bottom: 12px;
+            opacity: 0.6;
+        }
+        .empty-state h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2c241e;
+        }
+        .empty-state p {
+            color: #8a7e70;
+            margin-top: 4px;
+            font-size: 14px;
+        }
+        .empty-state code {
+            background: #f0ebe4;
+            padding: 3px 14px;
+            border-radius: 30px;
+            font-size: 13px;
+            color: #1e1a16;
+            font-weight: 500;
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 860px) {
+            .library-header {
+                padding: 24px 16px 20px;
+            }
+            .library-header .container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .brand h1 {
+                font-size: 20px;
+            }
+            .brand h1 small {
+                font-size: 11px;
+                display: block;
+                margin-left: 0;
+            }
+            .brand .sub {
+                font-size: 11px;
+            }
+            .header-stats {
+                padding: 4px 12px 4px 14px;
+                gap: 8px;
+            }
+            .header-stats .stat-item {
+                font-size: 12px;
+            }
+            .header-stats .stat-item strong {
+                font-size: 13px;
+            }
+            .stat-divider {
+                display: none;
+            }
+            .toolbar {
+                padding: 12px 16px 0;
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .search-wrap {
+                max-width: 100%;
+            }
+            .filter-group {
+                justify-content: flex-start;
+            }
+            .bookshelf {
+                padding: 14px 16px 36px;
+            }
+            .book-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 16px 12px;
+            }
+            .book-card {
+                min-height: 210px;
+                border-radius: 12px 8px 8px 12px;
+            }
+            .book-thumbnail {
+                padding-top: 125%;
+            }
+            .book-info-overlay .book-title {
+                font-size: 12px;
+            }
+            .book-info-overlay .book-author {
+                font-size: 10px;
+            }
+            .book-category-badge {
+                font-size: 8px;
+                top: 6px;
+                right: 8px;
+                padding: 1px 8px;
+            }
+            .book-footer {
+                padding: 6px 10px 8px 14px;
+            }
+            .book-footer .meta-tag,
+            .book-footer .pages-badge {
+                font-size: 9.5px;
+                padding: 1px 8px;
+            }
+            .book-card::before {
+                width: 4px;
+            }
+            .book-card:hover::before {
+                width: 5px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .library-header {
+                padding: 18px 12px 16px;
+            }
+            .brand-icon {
+                font-size: 26px;
+            }
+            .brand h1 {
+                font-size: 18px;
+            }
+            .brand h1 small {
+                font-size: 10px;
+            }
+            .brand .sub {
+                font-size: 10px;
+            }
+            .header-stats .stat-item {
+                font-size: 10px;
+            }
+            .header-stats .stat-item strong {
+                font-size: 12px;
+            }
+            .header-stats {
+                padding: 3px 10px 3px 12px;
+                gap: 6px;
+                border-radius: 40px;
+            }
+            .toolbar {
+                padding: 8px 12px 0;
+            }
+            .search-wrap input {
+                font-size: 13px;
+                padding: 8px 12px 8px 34px;
+            }
+            .search-wrap .search-icon {
+                font-size: 14px;
+                left: 12px;
+            }
+            .filter-chip {
+                font-size: 11px;
+                padding: 4px 10px;
+            }
+            .bookshelf {
+                padding: 10px 12px 28px;
+            }
+            .book-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px 10px;
+            }
+            .book-card {
+                min-height: 180px;
+                border-radius: 10px 6px 6px 10px;
+            }
+            .book-thumbnail {
+                padding-top: 120%;
+            }
+            .book-thumbnail .thumb-placeholder .loader {
+                width: 20px;
+                height: 20px;
+                border-width: 2px;
+            }
+            .book-thumbnail .thumb-placeholder span {
+                font-size: 10px;
+            }
+            .book-info-overlay {
+                padding: 14px 8px 8px 12px;
+            }
+            .book-info-overlay .book-title {
+                font-size: 11px;
+                -webkit-line-clamp: 2;
+            }
+            .book-info-overlay .book-author {
+                font-size: 9px;
+            }
+            .book-category-badge {
+                font-size: 7px;
+                top: 4px;
+                right: 6px;
+                padding: 1px 6px;
+            }
+            .book-footer {
+                padding: 4px 8px 6px 12px;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 2px;
+            }
+            .book-footer .meta-tag,
+            .book-footer .pages-badge {
+                font-size: 8.5px;
+                padding: 1px 6px;
+                justify-content: center;
+            }
+            .book-card::before {
+                width: 3px;
+                border-radius: 6px 0 0 6px;
+            }
+            .book-card:hover::before {
+                width: 4px;
+            }
+            .empty-state {
+                padding: 32px 16px;
+            }
+            .empty-state .big-icon {
+                font-size: 38px;
+            }
+            .empty-state h3 {
+                font-size: 16px;
+            }
+            .empty-state p {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .book-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px 8px;
+            }
+            .book-card {
+                min-height: 160px;
+            }
+            .book-thumbnail {
+                padding-top: 115%;
+            }
+            .book-info-overlay .book-title {
+                font-size: 10px;
+            }
+            .book-info-overlay .book-author {
+                font-size: 8px;
+            }
+            .book-category-badge {
+                font-size: 6px;
+                padding: 1px 4px;
+                top: 3px;
+                right: 4px;
+            }
+            .book-footer .meta-tag,
+            .book-footer .pages-badge {
+                font-size: 7.5px;
+            }
+        }
+
+        /* Helper to hide scroll on small screens while keeping touch */
+        @media (max-width: 500px) {
+            .book-thumbnail canvas {
+                object-fit: cover;
+            }
+        }
+
+        /* Prevent text selection on cards */
+        .book-card {
+            user-select: none;
+            -webkit-user-select: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====== HEADER ====== -->
+    <header class="library-header">
+        <div class="container">
+            <div class="brand">
+                <span class="brand-icon">📚</span>
+                <div>
+                    <h1>
+                        The Library
+                        <small>bookshop</small>
+                        <span class="sub">PDF thumbnails · tap to open</span>
+                    </h1>
+                </div>
+            </div>
+            <div class="header-stats">
+                <span class="stat-item">
+                    📖 <strong id="totalBooks">0</strong>
+                </span>
+                <span class="stat-divider"></span>
+                <span class="stat-item">
+                    🔍 <strong id="visibleCount">0</strong>
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ====== TOOLBAR ====== -->
+    <div class="toolbar">
+        <div class="search-wrap">
+            <span class="search-icon">🔎</span>
+            <input type="text" id="searchInput" placeholder="Search title, author, category…" autocomplete="off" />
+        </div>
+        <div class="filter-group">
+            <span class="filter-label">Filter:</span>
+            <button class="filter-chip active" data-filter="all">All</button>
+            <button class="filter-chip" data-filter="technical">💻 Tech</button>
+            <button class="filter-chip" data-filter="business">📊 Business</button>
+            <button class="filter-chip" data-filter="design">🎨 Design</button>
+            <button class="filter-chip" data-filter="reference">📖 Reference</button>
+        </div>
+    </div>
+
+    <!-- ====== BOOKSHELF ====== -->
+    <section class="bookshelf">
+        <div class="book-grid" id="bookGrid">
+            <!-- Rendered by JavaScript -->
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- JAVASCRIPT                                                   -->
+    <!-- ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ─── PDF.js CONFIG ──────────────────────────────────────
+            const PDF_JS_VERSION = '3.11.174';
+            pdfjsLib.GlobalWorkerOptions.workerSrc =
+                `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${PDF_JS_VERSION}/pdf.worker.min.js`;
+
+            // ─── CONFIG ────────────────────────────────────────────
+            const PDF_FOLDER = 'pdfs/';
+
+            // 📌 Add your PDF filenames here (with or without subfolders)
+            const PDF_FILES = [
+                // Example files – replace with your own!
+                'Sources of Nigerian Law.pdf',
+                'Sources of Nigerian Law.pdf',
+                'Sources of Nigerian Law.pdf',
+                'Sources of Nigerian Law.pdf',
+                'Sources of Nigerian Law.pdf',
+                'Sources of Nigerian Law.pdf',
+                'Sources of Nigerian Law.pdf',
+                'Sources of Nigerian Law.pdf',
+                'Sources of Nigerian Law.pdf',
+                'Sources of Nigerian Law.pdf',
+                'Sources of Nigerian Law.pdf',
+               
+            ];
+
+            // ─── MOCK METADATA ──────────────────────────────────────
+            function generateBookData(fileName, index) {
+                const clean = fileName.split('/').pop().replace(/\.pdf$/i, '');
+                const words = clean.split(/[-_\s]+/).filter(w => w.length > 0);
+                const title = words
+                    .map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
+                    .join(' ');
+
+                const authors = [
+                    'Elena Vogt', 'Marcus Chen', 'Sofia Rivera', 'James Whitaker',
+                    'Lea Nakamura', 'David Okafor', 'Clara Dubois', 'Ananya Sharma',
+                    'Thomas Keller', 'Zara Ahmed', 'Oliver Bennett', 'Maya Patel'
+                ];
+                const author = authors[index % authors.length];
+
+                const categories = ['technical', 'business', 'design', 'reference'];
+                const catLabels = {
+                    technical: '💻 Tech',
+                    business: '📊 Business',
+                    design: '🎨 Design',
+                    reference: '📖 Reference'
+                };
+                const catIndex = (clean.length + index) % categories.length;
+                const catKey = categories[catIndex];
+                const categoryLabel = catLabels[catKey] || '📄 Document';
+
+                const pages = Math.floor(Math.random() * 400) + 20;
+
+                const coverColors = {
+                    technical: { bg: '#eef4fc', spine: '#3b6ea5' },
+                    business: { bg: '#f3f0ea', spine: '#8b7a5e' },
+                    design: { bg: '#faf0f0', spine: '#b55a6b' },
+                    reference: { bg: '#edf3ec', spine: '#4a7c59' },
+                };
+                const colors = coverColors[catKey] || coverColors.reference;
+
+                const icons = {
+                    technical: '⚙️',
+                    business: '📈',
+                    design: '✏️',
+                    reference: '📖'
+                };
+                const icon = icons[catKey] || '📄';
+
+                return {
+                    fileName,
+                    displayName: title,
+                    author,
+                    category: catKey,
+                    categoryLabel,
+                    pages,
+                    icon,
+                    coverBg: colors.bg,
+                    spineColor: colors.spine,
+                    raw: clean.toLowerCase(),
+                };
+            }
+
+            // ─── STATE ──────────────────────────────────────────────
+            let books = PDF_FILES.map((f, i) => generateBookData(f, i));
+            let filteredBooks = [...books];
+            let activeFilter = 'all';
+            let searchTerm = '';
+
+            // ─── DOM REFS ──────────────────────────────────────────
+            const grid = document.getElementById('bookGrid');
+            const totalBooksEl = document.getElementById('totalBooks');
+            const visibleCountEl = document.getElementById('visibleCount');
+            const searchInput = document.getElementById('searchInput');
+            const filterChips = document.querySelectorAll('.filter-chip');
+
+            // ─── THUMBNAIL CACHE ──────────────────────────────────
+            const thumbnailCache = new Map(); // fileName -> canvas data URL
+
+            // ─── RENDER THUMBNAIL ──────────────────────────────────
+            async function renderThumbnail(book, container) {
+                const filePath = PDF_FOLDER + book.fileName;
+                const canvas = container.querySelector('canvas');
+                const placeholder = container.querySelector('.thumb-placeholder');
+                const errorDiv = container.querySelector('.thumb-error');
+
+                // Check cache
+                if (thumbnailCache.has(book.fileName)) {
+                    const dataUrl = thumbnailCache.get(book.fileName);
+                    const ctx = canvas.getContext('2d');
+                    const img = new Image();
+                    img.onload = () => {
+                        canvas.width = img.width;
+                        canvas.height = img.height;
+                        ctx.drawImage(img, 0, 0);
+                        container.classList.add('thumb-loaded');
+                    };
+                    img.onerror = () => {
+                        showError();
+                    };
+                    img.src = dataUrl;
+                    return;
+                }
+
+                try {
+                    // Load PDF
+                    const loadingTask = pdfjsLib.getDocument(filePath);
+                    const pdf = await loadingTask.promise;
+                    const page = await pdf.getPage(1);
+
+                    // Determine scale to fit thumbnail area
+                    const viewport = page.getViewport({ scale: 1 });
+                    const containerRect = container.getBoundingClientRect();
+                    const containerWidth = containerRect.width || 200;
+                    const containerHeight = containerRect.height || 260;
+
+                    // We want to fit the page width to the container width with some padding
+                    const scale = Math.min(
+                        (containerWidth - 20) / viewport.width,
+                        (containerHeight - 30) / viewport.height,
+                        1.5 // cap scale to avoid huge canvases
+                    );
+                    const scaledViewport = page.getViewport({ scale });
+
+                    canvas.width = scaledViewport.width;
+                    canvas.height = scaledViewport.height;
+
+                    const renderContext = {
+                        canvasContext: canvas.getContext('2d'),
+                        viewport: scaledViewport,
+                    };
+                    await page.render(renderContext).promise;
+
+                    // Cache as data URL
+                    const dataUrl = canvas.toDataURL('image/jpeg', 0.85);
+                    thumbnailCache.set(book.fileName, dataUrl);
+
+                    container.classList.add('thumb-loaded');
+
+                } catch (err) {
+                    console.warn('Thumbnail failed for:', book.fileName, err);
+                    showError();
+                }
+
+                function showError() {
+                    errorDiv.classList.add('show');
+                    container.classList.add('thumb-loaded');
+                }
+            }
+
+            // ─── RENDER GRID ──────────────────────────────────────
+            function render() {
+                filteredBooks = books.filter(book => {
+                    const matchFilter = activeFilter === 'all' || book.category === activeFilter;
+                    const matchSearch = searchTerm === '' ||
+                        book.displayName.toLowerCase().includes(searchTerm) ||
+                        book.author.toLowerCase().includes(searchTerm) ||
+                        book.categoryLabel.toLowerCase().includes(searchTerm) ||
+                        book.raw.includes(searchTerm);
+                    return matchFilter && matchSearch;
+                });
+
+                totalBooksEl.textContent = books.length;
+                visibleCountEl.textContent = filteredBooks.length;
+
+                if (filteredBooks.length === 0) {
+                    grid.innerHTML = `
+                        <div class="empty-state">
+                            <span class="big-icon">📭</span>
+                            <h3>No books found</h3>
+                            <p>Try adjusting your search or filter.</p>
+                            <p style="margin-top:4px; font-size:12px; color:#b0a394;">
+                                ${books.length} title${books.length !== 1 ? 's' : ''} in library
+                            </p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                let html = '';
+                filteredBooks.forEach((book) => {
+                    const spineColor = book.spineColor;
+                    const coverBg = book.coverBg;
+                    const filePath = PDF_FOLDER + book.fileName;
+
+                    html += `
+                        <div class="book-card"
+                             style="--spine-color: ${spineColor}; --cover-bg: ${coverBg};"
+                             data-filename="${book.fileName}"
+                             onclick="window.open('${filePath}', '_blank')"
+                             title="Open ${book.displayName}">
+                            <div class="book-thumbnail" id="thumb-${book.fileName.replace(/[^a-zA-Z0-9]/g, '_')}">
+                                <canvas></canvas>
+                                <div class="thumb-placeholder">
+                                    <div class="loader"></div>
+                                    <span>Loading preview…</span>
+                                </div>
+                                <div class="thumb-error">
+                                    📄
+                                    <span>preview unavailable</span>
+                                </div>
+                                <span class="book-category-badge">${book.categoryLabel}</span>
+                                <div class="book-info-overlay">
+                                    <div class="book-title">${book.displayName}</div>
+                                    <div class="book-author">${book.author}</div>
+                                </div>
+                            </div>
+                            <div class="book-footer">
+                                <span class="meta-tag">${book.categoryLabel}</span>
+                                <span class="pages-badge">📄 ${book.pages} pg</span>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                grid.innerHTML = html;
+
+                // ─── Render thumbnails after DOM update ──────────
+                // Use requestIdleCallback or setTimeout to not block UI
+                const thumbContainers = grid.querySelectorAll('.book-thumbnail');
+                thumbContainers.forEach((container, idx) => {
+                    const card = container.closest('.book-card');
+                    const fileName = card.dataset.filename;
+                    const book = books.find(b => b.fileName === fileName);
+                    if (book) {
+                        // Stagger loading for performance
+                        setTimeout(() => {
+                            renderThumbnail(book, container);
+                        }, 100 + idx * 80);
+                    }
+                });
+            }
+
+            // ─── FILTER / SEARCH ──────────────────────────────────
+            filterChips.forEach(chip => {
+                chip.addEventListener('click', function() {
+                    filterChips.forEach(c => c.classList.remove('active'));
+                    this.classList.add('active');
+                    activeFilter = this.dataset.filter;
+                    render();
+                });
+            });
+
+            let searchTimeout;
+            searchInput.addEventListener('input', function() {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(() => {
+                    searchTerm = this.value.trim().toLowerCase();
+                    render();
+                }, 150);
+            });
+
+            // ─── KEYBOARD SHORTCUTS ──────────────────────────────
+            document.addEventListener('keydown', (e) => {
+                if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                    e.preventDefault();
+                    searchInput.focus();
+                }
+                if (e.key === 'Escape') {
+                    searchInput.blur();
+                    searchInput.value = '';
+                    searchTerm = '';
+                    render();
+                }
+            });
+
+            // ─── INIT ──────────────────────────────────────────────
+            render();
+
+            // Re-render thumbnails on resize (for responsive scaling)
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    // Re-render only visible thumbnails by clearing cache for small screens?
+                    // Actually, we can just re-render the grid to refresh canvas sizes.
+                    // But we want to keep cached images. Let's just re-render.
+                    // However, re-rendering all thumbnails is expensive.
+                    // Instead, we'll just re-run the render to update the grid.
+                    // The thumbnails will be re-fetched from cache if available.
+                    // We need to re-run the render function but keep cache.
+                    render();
+                }, 400);
+            });
+
+            console.log(`📚 Library ready · ${books.length} book(s) from "${PDF_FOLDER}"`);
+            console.log('💡 Ctrl+K to search · Escape to clear');
+        })();
+    </script>
+
+</body>
+</html>
