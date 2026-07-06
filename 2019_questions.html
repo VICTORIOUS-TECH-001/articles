@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LEGAL METHODS II · EXAM SYSTEM</title>
+    <link rel="stylesheet" href="./src/css/2019.css">
+    <link rel="icon" type="image/png" href="./src/images/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="./src/images/favicon.svg" />
+    <link rel="shortcut icon" href="./src/images/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./src/images/apple-touch-icon.png" />
+</head>
+<body>
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="#" class="active" data-view="home">Home</a>
+            <a href="#" data-view="history">📜 History <span class="badge-history" id="historyBadge">0</span></a>
+            <button class="btn-restart" id="restartBtn">⟳ Restart Exam</button>
+        </div>
+    </nav>
+    <div class="toast" id="toast"></div>
+    <div class="paper">
+        <div class="view active" id="view-home">
+            <div class="exam-header">
+                <div class="uni-name">University of Nigeria, Enugu Campus</div>
+                <div class="uni-sub">Faculty of Law</div>
+                <div class="exam-title">Second Semester Examination</div>
+                <div style="font-size:20px;font-weight:700;letter-spacing:1px;color:#1a1a1a;margin:6px 0 2px;">LEGAL METHODS II</div>
+                <div class="exam-meta">
+                    <span><b>Date:</b> 28 August, 2019</span>
+                    <span><b>Time:</b> 2 Hours </span>
+                </div>
+            </div>
+
+            <!-- INSTRUCTIONS -->
+            <div class="instructions">
+                <h2>⸻ Instruction ⸻</h2>
+                <p><span class="highlight">ANSWER ONLY THREE (3) QUESTIONS.</span></p>
+                <p><span class="highlight">AT LEAST ONE QUESTION MUST BE ANSWERED FROM EACH SECTION.</span></p>
+                <p>Each question has an individual <b>30‑minute</b> countdown timer.</p>
+                <p class="note">➤ Submit your answer before starting another question.</p>
+               
+            </div>
+
+            <!-- SECTION A -->
+            <div class="section-divider">Section A</div>
+
+            <!-- Q1 -->
+            <div class="question" id="q1">
+                <div class="qhead">
+                    <h2>Question 1</h2>
+                    <div class="timer" id="timer1">30:00</div>
+                </div>
+                <div class="qbody">
+                    <p>In <b>Obi v. Emeka</b>, the Supreme Court was called upon to rule on the following issues for determination:</p>
+                    <div class="sub-q">
+                        <p><b>a.</b> Whether the Court of Appeal was right when it held that the decision of the High Court which did not consider the Supreme Court decision in <i>Ese v Malemi</i> was right because that decision would not have affected the decision of the Court even if the Court was aware of its existence?</p>
+                        <p><b>b.</b> Whether the decision of the Court of Appeal was correct since it failed to take note of the Rule of Court that was binding on it?</p>
+                        <p><b>c.</b> Whether the Court of Appeal was right to hold that the decision of the Supreme Court in <i>Obi v Amaka</i> was <i>per incuriam</i> and was not binding on the Court.</p>
+                        <p><b>d.</b> Whether the Court of Appeal was right in using the term "overruling" when pronouncing its decision changing the decision of the lower court?</p>
+                    </div>
+                    <p style="margin-top:10px;"><b>Write your opinion on the above issues.</b></p>
+
+                    <div class="action-row">
+                        <button class="btn-start" data-q="1">Start Exam</button>
+                        <button class="btn-submit" data-q="1" disabled>Submit Answer</button>
+                    </div>
+
+                    <div class="textarea-wrapper clearfix">
+                        <textarea id="answer1" disabled placeholder="Write your answer here…"></textarea>
+                        <div class="textarea-timer" id="timer1_inline">30:00</div>
+                    </div>
+
+                    <div id="correction1" class="correction-box"></div>
+                </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="question" id="q2">
+                <div class="qhead">
+                    <h2>Question 2</h2>
+                    <div class="timer" id="timer2">30:00</div>
+                </div>
+                <div class="qbody">
+                    <p>With the aid of decided cases, discuss how the courts have interpreted and applied the <b>repugnancy test</b> for the validity of customary laws.</p>
+
+                    <div class="action-row">
+                        <button class="btn-start" data-q="2">Start Exam</button>
+                        <button class="btn-submit" data-q="2" disabled>Submit Answer</button>
+                    </div>
+
+                    <div class="textarea-wrapper clearfix">
+                        <textarea id="answer2" disabled placeholder="Write your answer here…"></textarea>
+                        <div class="textarea-timer" id="timer2_inline">30:00</div>
+                    </div>
+
+                    <div id="correction2" class="correction-box"></div>
+                </div>
+            </div>
+
+            <!-- SECTION B -->
+            <div class="section-divider">Section B</div>
+
+            <!-- Q3 -->
+            <div class="question" id="q3">
+                <div class="qhead">
+                    <h2>Question 3</h2>
+                    <div class="timer" id="timer3">30:00</div>
+                </div>
+                <div class="qbody">
+                    <p>The main purpose of interpretation of statutes is to enable the court apply statutes properly and to also avoid injustice which may result from wrongful application of a statute.</p>
+                    <p>Write concisely on the following canons of interpretation; facing your answers with statutory and judicial authorities:</p>
+                    <div class="sub-q">
+                        <p><b>(a)</b> The Literal Rule</p>
+                        <p><b>(b)</b> The Golden Rule</p>
+                        <p><b>(c)</b> The Mischief Rule</p>
+                    </div>
+
+                    <div class="action-row">
+                        <button class="btn-start" data-q="3">Start Exam</button>
+                        <button class="btn-submit" data-q="3" disabled>Submit Answer</button>
+                    </div>
+
+                    <div class="textarea-wrapper clearfix">
+                        <textarea id="answer3" disabled placeholder="Write your answer here…"></textarea>
+                        <div class="textarea-timer" id="timer3_inline">30:00</div>
+                    </div>
+
+                    <div id="correction3" class="correction-box"></div>
+                </div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="question" id="q4">
+                <div class="qhead">
+                    <h2>Question 4</h2>
+                    <div class="timer" id="timer4">30:00</div>
+                </div>
+                <div class="qbody">
+                    <p><b>4(a).</b> While it is relatively easy to make laws in a military regime, the process is rigorous and cumbersome in a civilian or democratic regime as it involves many stages. Discuss.</p>
+                    <p><b>4(b).</b> Highlight and briefly explain the qualities of a good draftsman.</p>
+
+                    <div class="action-row">
+                        <button class="btn-start" data-q="4">Start Exam</button>
+                        <button class="btn-submit" data-q="4" disabled>Submit Answer</button>
+                    </div>
+
+                    <div class="textarea-wrapper clearfix">
+                        <textarea id="answer4" disabled placeholder="Write your answer here…"></textarea>
+                        <div class="textarea-timer" id="timer4_inline">30:00</div>
+                    </div>
+
+                    <div id="correction4" class="correction-box"></div>
+                </div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="question" id="q5">
+                <div class="qhead">
+                    <h2>Question 5</h2>
+                    <div class="timer" id="timer5">30:00</div>
+                </div>
+                <div class="qbody">
+                    <p><b>5(a).</b> Examine the significance of the library and research to a lawyer or a law student.</p>
+                    <p><b>5(b).</b> Examine the importance of the library catalogue and call numbers in assisting a researcher with materials in the library.</p>
+                    <p><b>5(c).</b> Distinguish distinctly between periodicals and books in the library.</p>
+                    <p><b>5(d).</b> Enumerate and explain the various ways of identifying books in the library.</p>
+
+                    <div class="action-row">
+                        <button class="btn-start" data-q="5">Start Exam</button>
+                        <button class="btn-submit" data-q="5" disabled>Submit Answer</button>
+                    </div>
+
+                    <div class="textarea-wrapper clearfix">
+                        <textarea id="answer5" disabled placeholder="Write your answer here…"></textarea>
+                        <div class="textarea-timer" id="timer5_inline">30:00</div>
+                    </div>
+
+                    <div id="correction5" class="correction-box"></div>
+                </div>
+            </div>
+
+            <!-- FOOTER -->
+            <div class="exam-footer">
+                <strong>Questions answered:</strong>
+                <span class="count-badge" id="count">0</span>
+                <strong> / 3</strong>
+                &nbsp;&nbsp;|&nbsp;&nbsp;
+                <span class="status-msg" id="statusMsg">Start a question to begin.</span>
+            </div>
+        </div>
+
+        <!-- ─── VIEW: HISTORY ─── -->
+        <div class="view" id="view-history">
+            <div class="history-header">
+                <h2>📜 Practice History</h2>
+                <button class="clear-all" id="clearAllHistory">🗑️ Clear All History</button>
+            </div>
+            <div id="historyListContainer">
+                <!-- dynamically rendered -->
+            </div>
+        </div>
+
+    </div><!-- /.paper -->
+
+    <script src="./src/JS/2019.js">
+       
+    </script>
+
+</body>
+</html>

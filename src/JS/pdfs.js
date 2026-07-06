@@ -27,7 +27,7 @@
                     .join(' ');
 
                 const authors = [
-                   " EYE OF GOD"
+                   ""
                 ];
                 const author = authors[index % authors.length];
 

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>Legal Method Past Qustion 2023</title>
+    <link rel="stylesheet" href="./src/css/2023.css">
+</head>
+<body>
+
+    <!-- ═══ OVERLAY 1: START ═══ -->
+    <div id="exam-overlay">
+        <h1>📚 LEGAL METHODS II</h1>
+        <div class="sub">University of Nigeria, Enugu Campus</div>
+        <div class="sub" style="font-size:1.2rem; font-weight:300;">Faculty of Law</div>
+        <div class="click-msg" id="startExamBtn">Click anywhere to begin</div>
+        <div class="small">Attempt any three questions, at least one from each section.<br>Each question has a 30‑minute timer. <strong>Total exam time: 100 minutes.</strong></div>
+    </div>
+
+    <!-- ═══ OVERLAY 2: TIME'S UP ═══ -->
+    <div id="timeup-overlay" class="hidden">
+        <h1>⏰ Time is up!</h1>
+        <div class="sub">Thank you for trying.</div>
+        <div class="desc">Your started questions have been automatically submitted.<br>Please check the <strong>History</strong> to see your effort and model answers.</div>
+        <button class="btn-history" id="goToHistoryBtn">📜 View History</button>
+    </div>
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="#" class="active" data-view="home">Home</a>
+            <a href="#" data-view="history">📜 History <span class="badge-history" id="historyBadge">0</span></a>
+            <span class="global-timer" id="globalTimerDisplay">⏱️ 100:00</span>
+            <button class="btn-restart" id="restartBtn">⟳ Restart</button>
+        </div>
+    </nav>
+    <div class="toast" id="toast"></div>
+    <div class="paper">
+        <div class="view active" id="view-home">
+            <div class="exam-header">
+                <div class="uni-name">University of Nigeria, Enugu Campus</div>
+                <div class="uni-sub">Faculty of Law</div>
+                <div class="exam-title">Second Semester Examination</div>
+                <div style="font-size:18px;font-weight:700;letter-spacing:0.5px;color:#1a1a1a;margin:4px 0 2px;">LAW 132: LEGAL METHODS II</div>
+                <div class="exam-meta">
+                    <span><b>Date:</b> 12/03/24</span>
+                    <span><b>Session:</b> 2022/2023</span>
+                    <span><b>Time:</b> 2 Hours</span>
+                </div>
+            </div>
+
+            <!-- INSTRUCTIONS -->
+            <div class="instructions">
+                <h2>⸻ Instruction ⸻</h2>
+                <p><span class="highlight">ATTEMPT ANY THREE (3) QUESTIONS.</span></p>
+                <p><span class="highlight">AT LEAST ONE QUESTION FROM EACH SECTION.</span></p>
+                <p><span class="highlight">BEGIN A NEW QUESTION ON A SEPARATE SHEET.</span></p>
+                <p>Each question has an individual <b>30‑minute</b> countdown timer.</p>
+                <p class="note">➤ Submit your answer before starting another question.</p>
+            </div>
+
+            <!-- SECTION A -->
+            <div class="section-divider">Section A</div>
+
+            <!-- Q1 -->
+            <div class="question" id="q1">
+                <div class="qhead">
+                    <h2>Question 1</h2>
+                    <div class="timer" id="timer1">30:00</div>
+                </div>
+                <div class="qbody">
+                    <p>The Nigerian Senators, in its sitting on the 27th of May 2022 extensively deliberated on the matter of national security including measures needed to contain the proliferation of firearms and light weapons in the country. Senators in their various contributions in the plenary expressed concerns that all Nigerians are threatened by insecurity due to kidnapping and ransom demand that are usually heavy. More than ever, they argued that the insecurity is the worst situation being faced in the present day of Nigeria. They reiterated the need to rise to the above challenges. In their opinion if the nation is to survive, steps must be taken to defend and secure lives and properties. The Senators have now resolved that the way forward is to legislate against the possession of firearms, ammunitions and explosives by the citizens. Mr. Grant, an observer at the house sitting afterwards in his discussion with his friends argued that the way to go is to allow citizens in the country to carry arms as a self‑defence mechanism against these kidnappers similar to what obtains in other countries. Furthermore, he informed his friends in confidence that he may have no choice but to consider suing the entire National Assembly should they proceed to legislate against the use of firearms, ammunitions and explosives.</p>
+                    <div class="sub-q">
+                        <p><b>(a)</b> Supposing the Senators are willing to legislate against the use of fire arms, ammunitions and explosives in Nigeria, discuss the procedures required in achieving this.</p>
+                        <p><b>(b)</b> Assuming Mr Grant intends to sue the National Assembly for legislating on fire arms and light weapons, which court will have jurisdiction over the case? Give reasons for your answer.</p>
+                        <p><b>(c)</b> List and briefly discuss five (5) features of good legislative drafting.</p>
+                    </div>
+
+                    <div class="action-row">
+                        <button class="btn-start" data-q="1">Start Exam</button>
+                        <button class="btn-submit" data-q="1" disabled>Submit Answer</button>
+                    </div>
+
+                    <div class="textarea-wrapper clearfix">
+                        <textarea id="answer1" disabled placeholder="Write your answer here…"></textarea>
+                        <div class="textarea-timer" id="timer1_inline">30:00</div>
+                    </div>
+
+                    <div id="correction1" class="correction-box"></div>
+                </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="question" id="q2">
+                <div class="qhead">
+                    <h2>Question 2</h2>
+                    <div class="timer" id="timer2">30:00</div>
+                </div>
+                <div class="qbody">
+                    <p>Agnes is the only surviving child of her parents who died recently in an auto crash. She intends to inherit the property of her parents at Nsukka but her uncles and aunties are strongly opposed to this because of the age‑long tradition of the land that forbids a female child from such inheritance. Her uncles and aunties are bragging that she cannot do anything about it. She has decided to challenge the matter in court. Discuss the legal issues and advise her accordingly.</p>
+
+                    <div class="action-row">
+                        <button class="btn-start" data-q="2">Start Exam</button>
+                        <button class="btn-submit" data-q="2" disabled>Submit Answer</button>
+                    </div>
+
+                    <div class="textarea-wrapper clearfix">
+                        <textarea id="answer2" disabled placeholder="Write your answer here…"></textarea>
+                        <div class="textarea-timer" id="timer2_inline">30:00</div>
+                    </div>
+
+                    <div id="correction2" class="correction-box"></div>
+                </div>
+            </div>
+
+            <!-- SECTION B -->
+            <div class="section-divider">Section B</div>
+
+            <!-- Q3 -->
+            <div class="question" id="q3">
+                <div class="qhead">
+                    <h2>Question 3</h2>
+                    <div class="timer" id="timer3">30:00</div>
+                </div>
+                <div class="qbody">
+                    <p><i>"It is a very useful rule in the construction of a statute to adhere to the ordinary meaning of the words used, and to the grammatical construction unless that is at variance with the intention of the legislature to be collected from the statute itself, or lead to manifest absurdity or repugnant, in which case the language may be modified so as to avoid such inconvenience, but no further."</i> — <b>Becke v Smith</b>.</p>
+                    <p>Discuss.</p>
+
+                    <div class="action-row">
+                        <button class="btn-start" data-q="3">Start Exam</button>
+                        <button class="btn-submit" data-q="3" disabled>Submit Answer</button>
+                    </div>
+
+                    <div class="textarea-wrapper clearfix">
+                        <textarea id="answer3" disabled placeholder="Write your answer here…"></textarea>
+                        <div class="textarea-timer" id="timer3_inline">30:00</div>
+                    </div>
+
+                    <div id="correction3" class="correction-box"></div>
+                </div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="question" id="q4">
+                <div class="qhead">
+                    <h2>Question 4</h2>
+                    <div class="timer" id="timer4">30:00</div>
+                </div>
+                <div class="qbody">
+                    <p><b>(a)</b> A well written brief comprises some necessary components. Outline and discuss such necessary components.</p>
+                    <p><b>(b)</b> Discuss the principles associated with the formulation of grounds of appeal.</p>
+
+                    <div class="action-row">
+                        <button class="btn-start" data-q="4">Start Exam</button>
+                        <button class="btn-submit" data-q="4" disabled>Submit Answer</button>
+                    </div>
+
+                    <div class="textarea-wrapper clearfix">
+                        <textarea id="answer4" disabled placeholder="Write your answer here…"></textarea>
+                        <div class="textarea-timer" id="timer4_inline">30:00</div>
+                    </div>
+
+                    <div id="correction4" class="correction-box"></div>
+                </div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="question" id="q5">
+                <div class="qhead">
+                    <h2>Question 5</h2>
+                    <div class="timer" id="timer5">30:00</div>
+                </div>
+                <div class="qbody">
+                    <p>Briefly discuss the following and demonstrate how they aid in legal research:</p>
+                    <div class="sub-q">
+                        <p><b>(i)</b> Law citators</p>
+                        <p><b>(ii)</b> Law digest</p>
+                        <p><b>(iii)</b> Law journals</p>
+                        <p><b>(iv)</b> Law Dictionaries</p>
+                    </div>
+
+                    <div class="action-row">
+                        <button class="btn-start" data-q="5">Start Exam</button>
+                        <button class="btn-submit" data-q="5" disabled>Submit Answer</button>
+                    </div>
+
+                    <div class="textarea-wrapper clearfix">
+                        <textarea id="answer5" disabled placeholder="Write your answer here…"></textarea>
+                        <div class="textarea-timer" id="timer5_inline">30:00</div>
+                    </div>
+
+                    <div id="correction5" class="correction-box"></div>
+                </div>
+            </div>
+
+            <!-- FOOTER -->
+            <div class="exam-footer">
+                <strong>Questions answered:</strong>
+                <span class="count-badge" id="count">0</span>
+                <strong> / 3</strong>
+                &nbsp;&nbsp;|&nbsp;&nbsp;
+                <span class="status-msg" id="statusMsg">Start a question to begin.</span>
+            </div>
+        </div>
+
+        <!-- ─── VIEW: HISTORY ─── -->
+        <div class="view" id="view-history">
+            <div class="history-header">
+                <h2>📜 Practice History</h2>
+                <button class="clear-all" id="clearAllHistory">🗑️ Clear All</button>
+            </div>
+            <div id="historyListContainer">
+                <!-- dynamically rendered -->
+            </div>
+        </div>
+
+    </div><!-- /.paper -->
+
+    <script src="./src/JS/2023.js">
+      
+    </script>
+
+</body>
+</html>

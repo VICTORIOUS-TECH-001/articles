@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LAW 132 · LEGAL METHODS 2 · EXAM SYSTEM</title>
+    <link rel="stylesheet" href="./src/css/2025.css">
+    <style>
+        
+    </style>
+</head>
+<body>
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="#" class="active" data-view="home">Home</a>
+            <a href="#" data-view="history">📜 History <span class="badge-history" id="historyBadge">0</span></a>
+            <button class="btn-restart" id="restartBtn">⟳ Restart Exam</button>
+        </div>
+    </nav>
+    <div class="toast" id="toast"></div>
+    <div class="paper">
+        <div class="view active" id="view-home">
+            <div class="exam-header">
+                <div class="uni-name">University of Nigeria, Enugu Campus</div>
+                <div class="uni-sub">Faculty of Law</div>
+                <div class="exam-title">Second Semester Examination</div>
+                <div style="font-size:20px;font-weight:700;letter-spacing:1px;color:#1a1a1a;margin:6px 0 2px;">LAW 132: LEGAL METHODS 2</div>
+                <div class="exam-meta">
+                    <span><b>Date:</b> 23/09/25</span>
+                    <span><b>Session:</b> 2024/2025</span>
+                    <span><b>Time:</b> 2 Hours</span>
+                </div>
+            </div>
+
+            <!-- INSTRUCTIONS -->
+            <div class="instructions">
+                <h2>⸻ Instruction ⸻</h2>
+                <p><span class="highlight">ATTEMPT ANY THREE (3) QUESTIONS.</span></p>
+                <p><span class="highlight">AT LEAST ONE QUESTION MUST BE ANSWERED FROM EACH SECTION.</span></p>
+                <p>Each question has an individual <b>30‑minute</b> countdown timer.</p>
+                <p class="note">➤ Submit your answer before starting another question.</p>
+            </div>
+
+            <!-- SECTION A -->
+            <div class="section-divider">Section A</div>
+
+            <!-- Q1 -->
+            <div class="question" id="q1">
+                <div class="qhead">
+                    <h2>Question 1</h2>
+                    <div class="timer" id="timer1">30:00</div>
+                </div>
+                <div class="qbody">
+                    <p><b>(a)</b> Common Law and Equity have some similarities but differ in their essential characteristics. Discuss, highlighting the differences between them.</p>
+                    <p><b>(b)</b> Does the doctrine of distinguishing go against the principle of precedent? Discuss, with reference to relevant legal authorities.</p>
+                    <p><b>(c)</b> Identify and briefly explain three ways in which a past judicial decision can be binding as precedent.</p>
+
+                    <div class="action-row">
+                        <button class="btn-start" data-q="1">Start Exam</button>
+                        <button class="btn-submit" data-q="1" disabled>Submit Answer</button>
+                    </div>
+
+                    <div class="textarea-wrapper clearfix">
+                        <textarea id="answer1" disabled placeholder="Write your answer here…"></textarea>
+                        <div class="textarea-timer" id="timer1_inline">30:00</div>
+                    </div>
+
+                    <div id="correction1" class="correction-box"></div>
+                </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="question" id="q2">
+                <div class="qhead">
+                    <h2>Question 2</h2>
+                    <div class="timer" id="timer2">30:00</div>
+                </div>
+                <div class="qbody">
+                    <p><b>(a)</b> Legislation is an important source of Nigerian law in that their provisions are binding as law – <i>E.A Ikegbu et al.</i> Discuss and differentiate between statute law and Case law.</p>
+                    <p><b>(b)</b> Discuss the necessity of delegated legislation and identify the various types of delegated legislation.</p>
+                    <p><b>(c)</b> Highlight the process of legislation under the Military regime in Nigeria.</p>
+
+                    <div class="action-row">
+                        <button class="btn-start" data-q="2">Start Exam</button>
+                        <button class="btn-submit" data-q="2" disabled>Submit Answer</button>
+                    </div>
+
+                    <div class="textarea-wrapper clearfix">
+                        <textarea id="answer2" disabled placeholder="Write your answer here…"></textarea>
+                        <div class="textarea-timer" id="timer2_inline">30:00</div>
+                    </div>
+
+                    <div id="correction2" class="correction-box"></div>
+                </div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="question" id="q3">
+                <div class="qhead">
+                    <h2>Question 3</h2>
+                    <div class="timer" id="timer3">30:00</div>
+                </div>
+                <div class="qbody">
+                    <p><b>(a)</b> <i>"A court is not entitled to refuse to follow the decision of a higher court by which it is bound on the ground that it was given per incuriam"</i> – <b>Okoegbu v The State</b>. Discuss.</p>
+                    <p><b>(b)</b> Nigeria has gone through the military and democratic regimes, which of the two regimes do you consider more suitable for Nigeria? Give at least five reasons for your answer.</p>
+                    <p><b>(c)</b> State the hierarchy of courts under the 1999 Constitution as amended.</p>
+
+                    <div class="action-row">
+                        <button class="btn-start" data-q="3">Start Exam</button>
+                        <button class="btn-submit" data-q="3" disabled>Submit Answer</button>
+                    </div>
+
+                    <div class="textarea-wrapper clearfix">
+                        <textarea id="answer3" disabled placeholder="Write your answer here…"></textarea>
+                        <div class="textarea-timer" id="timer3_inline">30:00</div>
+                    </div>
+
+                    <div id="correction3" class="correction-box"></div>
+                </div>
+            </div>
+
+            <!-- SECTION B -->
+            <div class="section-divider">Section B</div>
+
+            <!-- Q4 -->
+            <div class="question" id="q4">
+                <div class="qhead">
+                    <h2>Question 4</h2>
+                    <div class="timer" id="timer4">30:00</div>
+                </div>
+                <div class="qbody">
+                    <p><b>(a)</b> It is trite that in a federal system, it is the responsibility of the legislature to make laws. However, on certain occasions the courts (judges) could be seen making laws. Explain.</p>
+                    <p><b>(b)</b> The Latin maxim <i>'generalia specialibus non derogant'</i> is one of the rules of statutory interpretation. Discuss.</p>
+
+                    <div class="action-row">
+                        <button class="btn-start" data-q="4">Start Exam</button>
+                        <button class="btn-submit" data-q="4" disabled>Submit Answer</button>
+                    </div>
+
+                    <div class="textarea-wrapper clearfix">
+                        <textarea id="answer4" disabled placeholder="Write your answer here…"></textarea>
+                        <div class="textarea-timer" id="timer4_inline">30:00</div>
+                    </div>
+
+                    <div id="correction4" class="correction-box"></div>
+                </div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="question" id="q5">
+                <div class="qhead">
+                    <h2>Question 5</h2>
+                    <div class="timer" id="timer5">30:00</div>
+                </div>
+                <div class="qbody">
+                    <p><b>(a)</b> Discuss the purpose and importance of brief writing.</p>
+                    <p><b>(b)</b> Under the relevant rules, failure to file briefs has certain legal consequences. Discuss.</p>
+                    <p><b>(c)</b> Discuss the relevance of law citators in legal research.</p>
+
+                    <div class="action-row">
+                        <button class="btn-start" data-q="5">Start Exam</button>
+                        <button class="btn-submit" data-q="5" disabled>Submit Answer</button>
+                    </div>
+
+                    <div class="textarea-wrapper clearfix">
+                        <textarea id="answer5" disabled placeholder="Write your answer here…"></textarea>
+                        <div class="textarea-timer" id="timer5_inline">30:00</div>
+                    </div>
+
+                    <div id="correction5" class="correction-box"></div>
+                </div>
+            </div>
+
+            <!-- FOOTER -->
+            <div class="exam-footer">
+                <strong>Questions answered:</strong>
+                <span class="count-badge" id="count">0</span>
+                <strong> / 3</strong>
+                &nbsp;&nbsp;|&nbsp;&nbsp;
+                <span class="status-msg" id="statusMsg">Start a question to begin.</span>
+            </div>
+        </div>
+
+        <!-- ─── VIEW: HISTORY ─── -->
+        <div class="view" id="view-history">
+            <div class="history-header">
+                <h2>📜 Practice History</h2>
+                <button class="clear-all" id="clearAllHistory">🗑️ Clear All History</button>
+            </div>
+            <div id="historyListContainer">
+                <!-- dynamically rendered -->
+            </div>
+        </div>
+
+    </div><!-- /.paper -->
+
+    <script src="./src/JS/2025_questions.js"></script>
+
+</body>
+</html>

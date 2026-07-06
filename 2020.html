@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LAW 132 · LEGAL METHODS 2 · EXAM SYSTEM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./src/output.css">
+    <link rel="stylesheet" href="./src/css/2020.css">
+    <link rel="icon" type="image/png" href="./src/images/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="./src/images/favicon.svg" />
+    <link rel="shortcut icon" href="./src/images/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./src/images/apple-touch-icon.png" />
+
+    <style>
+        p,
+        .instructions p,
+        .qbody p,
+        .sub-q p,
+        .correction-box,
+        .answer-preview,
+        .correction-preview,
+        .history-card .hcard-body .answer-preview,
+        .history-card .hcard-body .correction-preview {
+            text-align: justify !important;
+            hyphens: auto;
+            word-break: break-word;
+        }
+        .qbody .sub-q {
+            text-align: justify;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="#" class="active" data-view="home">Home</a>
+            <a href="#" data-view="history">📜 History <span class="badge-history" id="historyBadge">0</span></a>
+            <button class="btn-restart" id="restartBtn">⟳ Restart Exam</button>
+        </div>
+    </nav>
+    <div class="toast" id="toast"></div>
+    <div class="paper">
+        <div class="view active" id="view-home">
+            <div class="exam-header">
+                <div class="uni-name">University of Nigeria, Enugu Campus</div>
+                <div class="uni-sub">Faculty of Law</div>
+                <div class="exam-title">Second Semester Examination</div>
+                <div style="font-size:20px;font-weight:700;letter-spacing:1px;color:#1a1a1a;margin:6px 0 2px;">LAW 132: LEGAL METHODS 2</div>
+                <div class="exam-meta">
+                    <span><b>Date:</b> 28/6/21</span>
+                    <span><b>Session:</b> 2019/2020</span>
+                    <span><b>Time:</b> 2 Hours</span>
+                </div>
+            </div>
+
+            <!-- INSTRUCTIONS -->
+            <div class="instructions">
+                <h2>⸻ Instruction ⸻</h2>
+                <p><span class="highlight">ATTEMPT ANY THREE (3) QUESTIONS.</span></p>
+                <p><span class="highlight">AT LEAST ONE QUESTION MUST BE ANSWERED FROM EACH SECTION.</span></p>
+                <p>Each question has an individual <b>30‑minute</b> countdown timer.</p>
+                <p class="note">➤ Submit your answer before starting another question.</p>
+            </div>
+
+            <!-- SECTION A -->
+            <div class="section-divider">Section A</div>
+
+            <!-- Q1 -->
+            <div class="question" id="q1">
+                <div class="qhead">
+                    <h2>Question 1</h2>
+                    <div class="timer" id="timer1">30:00</div>
+                </div>
+                <div class="qbody">
+                    <p><b>1a.</b> Max Bobby, a first timer, is the senator representing his constituency in the 9th assembly of the Federal Republic of Nigeria. Distinguished Senator Bobby is greatly unhappy that his state is the only state in the country without a federal university. He intends sponsoring a bill to that effect with hopes that it becomes a law for a federal university to be established in his state. As a legal drafting expert, educate him on the stages the bill will undergo.</p>
+                    <p><b>1b.</b> How is law making in military regimes different from that of democratic regimes.</p>
+
+                    <div class="action-row">
+                        <button class="btn-start" data-q="1">Start Exam</button>
+                        <button class="btn-submit" data-q="1" disabled>Submit Answer</button>
+                    </div>
+
+                    <div class="textarea-wrapper clearfix">
+                        <textarea id="answer1" disabled placeholder="Write your answer here…"></textarea>
+                        <div class="textarea-timer" id="timer1_inline">30:00</div>
+                    </div>
+
+                    <div id="correction1" class="correction-box"></div>
+                </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="question" id="q2">
+                <div class="qhead">
+                    <h2>Question 2</h2>
+                    <div class="timer" id="timer2">30:00</div>
+                </div>
+                <div class="qbody">
+                    <p><b>2a.</b> The duties of a draftsman are very tasking and require exceptional intellectual competence. Discuss, highlighting and explaining the qualities of a good draftsman.</p>
+                    <p><b>2b.</b> A Code is a specie of statute which seeks to sum up or bring together/compile the existing legislation and case law on a particular topic. Discuss the above statement in relation to types, qualities, critique and possible solutions to the perceived disadvantages of codification.</p>
+
+                    <div class="action-row">
+                        <button class="btn-start" data-q="2">Start Exam</button>
+                        <button class="btn-submit" data-q="2" disabled>Submit Answer</button>
+                    </div>
+
+                    <div class="textarea-wrapper clearfix">
+                        <textarea id="answer2" disabled placeholder="Write your answer here…"></textarea>
+                        <div class="textarea-timer" id="timer2_inline">30:00</div>
+                    </div>
+
+                    <div id="correction2" class="correction-box"></div>
+                </div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="question" id="q3">
+                <div class="qhead">
+                    <h2>Question 3</h2>
+                    <div class="timer" id="timer3">30:00</div>
+                </div>
+                <div class="qbody">
+                    <p>The main purpose of interpretation of statutes is to enable the court apply statutes properly and to also avoid injustice which may result from wrongful application of a statute. Write concisely on the following canons of interpretation; facing your answers with statutory and judicial authorities:</p>
+                    <div class="sub-q">
+                        <p><b>(I)</b> The Literal Rule</p>
+                        <p><b>(II)</b> The Golden Rule</p>
+                        <p><b>(III)</b> The Mischief Rule</p>
+                    </div>
+
+                    <div class="action-row">
+                        <button class="btn-start" data-q="3">Start Exam</button>
+                        <button class="btn-submit" data-q="3" disabled>Submit Answer</button>
+                    </div>
+
+                    <div class="textarea-wrapper clearfix">
+                        <textarea id="answer3" disabled placeholder="Write your answer here…"></textarea>
+                        <div class="textarea-timer" id="timer3_inline">30:00</div>
+                    </div>
+
+                    <div id="correction3" class="correction-box"></div>
+                </div>
+            </div>
+
+            <!-- SECTION B -->
+            <div class="section-divider">Section B</div>
+
+            <!-- Q4 -->
+            <div class="question" id="q4">
+                <div class="qhead">
+                    <h2>Question 4</h2>
+                    <div class="timer" id="timer4">30:00</div>
+                </div>
+                <div class="qbody">
+                    <p>Mr. Nda Onyeahor, died intestate leaving a wife, Ngozi, and three daughters Grace, Mercy and Chidinma Onyeahor behind. His nephew, Mr. Okoli Onyeahor as his only surviving male relative claimed that based on the Oli-Ekpe custom, he was entitled to inherit his uncle's property. The Oli-ekpe custom prohibits the inheritance rights of females and provides that the eldest male in the family will inherit it from the deceased. The custom further provides that where the male issue of the direct line is deceased, the first son of the late brother of the deceased, the nephew or 'Oli-ekpe' will inherit his property. Mr. Nda Onyeahor's daughters instituted proceedings in the High Court in Anambra State whereupon the court upheld the 'Oli-ekpe' custom and judgment was granted in favour of Okoli Onyeahor. Aggrieved the Onyeahor daughters have come to you for help. Relying on the relevant sections of the Constitution, as well as the case of <i>Mojekwu v Mojekwu</i> [1997] 7 NWLR 283 where the court held that the Oli-ekpe custom is discriminatory, you have decided to appeal the case.</p>
+                    <div class="sub-q">
+                        <p><b>a.</b> Describe the parts of an appellant's brief detailing their individual functions.</p>
+                        <p><b>b.</b> Prepare the appellants' brief using the facts above.</p>
+                    </div>
+
+                    <div class="action-row">
+                        <button class="btn-start" data-q="4">Start Exam</button>
+                        <button class="btn-submit" data-q="4" disabled>Submit Answer</button>
+                    </div>
+
+                    <div class="textarea-wrapper clearfix">
+                        <textarea id="answer4" disabled placeholder="Write your answer here…"></textarea>
+                        <div class="textarea-timer" id="timer4_inline">30:00</div>
+                    </div>
+
+                    <div id="correction4" class="correction-box"></div>
+                </div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="question" id="q5">
+                <div class="qhead">
+                    <h2>Question 5</h2>
+                    <div class="timer" id="timer5">30:00</div>
+                </div>
+                <div class="qbody">
+                    <p><b>5a.</b> A library is to a lawyer as a laboratory is to a scientist. Discuss.</p>
+                    <p><b>5b.</b> Ms. Julie got married to Chief Mike Arubi on the 4th day of March, 2021 at St Paul's Catholic Church Ekenwa, Benin City in Edo State. With her new status, Ms. Julie now officially desires to have a change of name. How would she do this using an affidavit of not more than six paragraphs? In what other ways can an affidavit be used?</p>
+
+                    <div class="action-row">
+                        <button class="btn-start" data-q="5">Start Exam</button>
+                        <button class="btn-submit" data-q="5" disabled>Submit Answer</button>
+                    </div>
+
+                    <div class="textarea-wrapper clearfix">
+                        <textarea id="answer5" disabled placeholder="Write your answer here…"></textarea>
+                        <div class="textarea-timer" id="timer5_inline">30:00</div>
+                    </div>
+
+                    <div id="correction5" class="correction-box"></div>
+                </div>
+            </div>
+
+            <!-- FOOTER -->
+            <div class="exam-footer">
+                <strong>Questions answered:</strong>
+                <span class="count-badge" id="count">0</span>
+                <strong> / 3</strong>
+                &nbsp;&nbsp;|&nbsp;&nbsp;
+                <span class="status-msg" id="statusMsg">Start a question to begin.</span>
+            </div>
+        </div>
+
+        <!-- ─── VIEW: HISTORY ─── -->
+        <div class="view" id="view-history">
+            <div class="history-header">
+                <h2>📜 Practice History</h2>
+                <button class="clear-all" id="clearAllHistory">🗑️ Clear All History</button>
+            </div>
+            <div id="historyListContainer">
+                <!-- dynamically rendered -->
+            </div>
+        </div>
+
+    </div><!-- /.paper -->
+
+    <!-- Your existing JavaScript (unchanged) -->
+    <script src="./src/JS/2020.js"></script>
+
+</body>
+</html>

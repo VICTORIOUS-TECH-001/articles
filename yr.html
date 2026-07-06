@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Past Questions</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#071c39,#0b4a7d,#1086d7);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px;
+}
+
+.container{
+    width:100%;
+    max-width:1400px;
+}
+
+.title{
+    text-align:center;
+    color:#fff;
+    font-size:40px;
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#d7e8ff;
+    margin-bottom:40px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.card{
+    position:relative;
+    overflow:hidden;
+    border-radius:25px;
+    padding:30px;
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,.2);
+    color:#fff;
+    transition:.4s;
+    cursor:pointer;
+}
+
+.card::before{
+    content:"";
+    position:absolute;
+    width:180px;
+    height:180px;
+    background:rgba(255,255,255,.15);
+    border-radius:50%;
+    top:-80px;
+    right:-70px;
+}
+
+.card:hover{
+    transform:translateY(-12px) scale(1.03);
+    box-shadow:0 20px 40px rgba(0,0,0,.35);
+}
+
+.year{
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    background:#fff;
+    color:#0a4e91;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:22px;
+    font-weight:bold;
+    margin-bottom:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+}
+
+h2{
+    font-size:24px;
+    margin-bottom:12px;
+}
+
+p{
+    color:#dbe8ff;
+    line-height:1.7;
+    margin-bottom:25px;
+}
+
+button{
+    width:100%;
+    border:none;
+    padding:14px;
+    border-radius:50px;
+    background:#fff;
+    color:#0a4e91;
+    font-weight:600;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    background:#ffd54f;
+    color:#000;
+}
+
+.card:nth-child(1){background:linear-gradient(135deg,#00b09b,#96c93d);}
+.card:nth-child(2){background:linear-gradient(135deg,#4facfe,#00f2fe);}
+.card:nth-child(3){background:linear-gradient(135deg,#667eea,#764ba2);}
+.card:nth-child(4){background:linear-gradient(135deg,#ff6a00,#ee0979);}
+.card:nth-child(5){background:linear-gradient(135deg,#11998e,#38ef7d);}
+.card:nth-child(6){background:linear-gradient(135deg,#fc466b,#3f5efb);}
+.card:nth-child(7){background:linear-gradient(135deg,#f7971e,#ffd200);color:#222;}
+
+.card:nth-child(7) p,
+.card:nth-child(7) h2{
+color:#222;
+}
+
+.card:nth-child(7) button{
+background:#222;
+color:#fff;
+}
+
+.card:nth-child(7) button:hover{
+background:#fff;
+color:#222;
+}
+
+@media(max-width:700px){
+.title{
+font-size:20px;
+}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1 class="title">📚 Past Questions Archive</h1>
+<p class="subtitle">Select any academic session to view available past examination questions.</p>
+
+<div class="cards">
+
+<div class="card">
+    <div class="year">2019</div>
+    <h2>2019 Past Questions</h2>
+    <p>
+        Practice <strong>Introduction to Legal Method</strong> past examination
+        questions from the 2019 academic session. 
+    </p>
+ <a href="./2019_questions.html">
+    <button>Practice 2019</button>
+ </a>  
+</div>
+
+<div class="card">
+    <div class="year">2020</div>
+    <h2>2020 Past Questions</h2>
+    <p>
+        Practice <strong>Introduction to Legal Method</strong> past examination
+        questions from the 2020 academic session. 
+    </p>
+      <a href="./2020.html">  <button>Practice 2020</button></a>
+</div>
+
+<div class="card">
+    <div class="year">2021</div>
+    <h2>2021 Past Questions</h2>
+    <p>
+        Practice <strong>Introduction to Legal Method</strong> past examination
+        questions from the 2021 academic session.
+    </p>
+   <a href="./2021_questions.html"><button>Practice 2021</button></a>
+</div>
+
+<div class="card">
+    <div class="year">2022</div>
+    <h2>2022 Past Questions</h2>
+    <p>
+        Practice <strong>Introduction to Legal Method</strong> past examination
+        questions from the 2022 academic session. 
+    </p>
+    <a href="./2022_questions.html"><button>Practice 2022</button></a>
+</div>
+
+<div class="card">
+    <div class="year">2023</div>
+    <h2>2023 Past Questions</h2>
+    <p>
+        Practice <strong>Introduction to Legal Method</strong> past examination
+        questions from the 2023 academic session.
+    </p>
+    <a href="./2023.html"><button>Practice 2023</button></a>
+</div>
+
+<div class="card">
+    <div class="year">2024</div>
+    <h2>2024 Past Questions</h2>
+    <p>
+        Practice <strong>Introduction to Legal Method</strong> past examination
+        questions from the 2024 academic session.
+    </p>
+    <a href="./2024_questions.html"><button>Practice 2024</button></a>
+</div>
+
+<div class="card">
+    <div class="year">2025</div>
+    <h2>2025 Past Questions</h2>
+    <p>
+        Practice <strong>Introduction to Legal Method</strong> past examination
+        questions from the 2025 academic session.
+    </p>
+    <a href="./2025_questions.html"><button>Practice 2025</button></a>
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

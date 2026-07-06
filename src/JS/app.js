@@ -1,495 +1,359 @@
-  const siteData = {
-            navItems: [
-                { id: "home", label: "Home" },
-                { id: "Dashboard", label: "Dashboard" },
-                { id: "projects", label: "Cases" },
-                { id: "books", label: "Books" },
-                { id: "Past Questions", label: "Past Questions" },
-                { id: "articles", label: "Articles" },
-                { id: "exams", label: "Exams" },
-                { id: "contact", label: "Contact" },
-                { id: "E-books", label: "E-books" },
-                { id: "Webinars", label: "Webinars" },
-                { id: "Moot Court", label: "Moot Court Updates" },
-                { id: "Scholarships", label: "Scholarships" },
-                { id: "AI Tutor", label: "AI Tutor" },
-                { id: "Coursesr", label: "Courses" },
-                { id: "contact", label: "Contact" }
-            ],
-
-            home: {
-                title: "LEGAL INTELLIGENCE HUB",
-                subtitle: "Where knowledge meets <span class='text-purple-400'>innovation</span> & <span class='text-sky-400'>vision</span>.",
-                description: "Explore cases,books, assessment tools, and scholarly articles. This portal is designed for law student research,and innovation.",
-                buttons: [
-                    { text: "✨ Discover Cases", action: "projects" },
-                    { text: "📚 Exam Resources", action: "exams" }
-                ]
-            },
-            projects: {
-                title: "🚀 Click to visit cases and Your Materials",
-                items: [
-                    { title: "LAW", description: "Choose you level and select semester to get cases according to topics & branch of law"}
-                ]
-            },
-            books: {
-                title: "📖 Authored Volumes",
-                items: [
-                    { title: "“legal theories”", description: "Exploring legal theory in digital age." },
-                    { title: "“customary law”", description: "customary law in twenty first century." },
-                    { title: "“Law and Tech”", description: "Moral frameworks for autonomous systems." }
-                ]
-            },
-            test: {
-                chapters: [
-                    { title: "Chapter 1", instructions: "Instructions: 50 Questions | 30 Minutes", topics: ["Nature of Law", "Definition of Law", "Characteristics of Law", "Functions of Law", "Positive School", "Pure Theory of Law", "Natural Law School", "Historical School", "Sociological School", "Realist School", "Economic School"], link: "../law/Chapter_1.html" },
-                    { title: "Chapter 2", instructions: "Instructions: 50 Questions | 30 Minutes", topics: ["Quasi-Representation", "Ceremonies", "Customary Law Appraisal", "Growth of Legal Profession", "Self-Taught Attorney Era", "Qualification for Practice"], link: "#" },
-                    { title: "Chapter 3", instructions: "Instructions: 50 Questions | 30 Minutes", topics: ["Law and Order", "Law and Justice", "Law and Morality", "Law and State", "Law and Legitimacy", "Law and Sovereignty", "Law and Freedom", "Rule of Law", "Judiciary Independence"], link: "#" },
-                    { title: "Chapter 4", instructions: "Instructions: 50 Questions | 30 Minutes", topics: ["Common Law", "Customary Law", "Civil Law", "Criminal & Civil Law", "Public & Private Law", "Substantive & Procedural", "Municipal & International", "Equity"], link: "#" },
-                    { title: "Chapter 5", instructions: "Instructions: 50 Questions | 30 Minutes", topics: ["Need for Control", "Methods of Social Control", "Penal Technique", "Grievance-Remedial Tech", "Admin-Regulatory Tech", "Social Benefit Technique", "Constitutive Technique", "Fiscal Technique"], link: "#" },
-                    { title: "Chapter 6", instructions: "Instructions: 50 Questions | 30 Minutes", topics: ["Dispute Resolution", "Adjudicatory Method", "Adversarial Method", "Inquisitorial Method", "Comparison of Models", "Adv. of Adversarial", "Disadv. of Adversarial", "Adv. of Inquisitorial", "Disadv. of Inquisitorial", "Non-adjudicatory Method", "Arbitration", "Customary Methods", "Negotiation", "Mediation", "Facilitation", "Conciliation", "Med-Arb", "Mini-trial", "Litigation"], link: "#" }
-                ]
-            },
-            articles: {
-                title: "✍️ Recent Publications",
-                items: [
-                    { text: "“Procrastination as an academic grave” – Journal of Academic Innovation, 2026" },
-                    { text: "“Brain hacks” - The secret to Acing law Exams" },
-                    { text: "“Be your own Accountant” – Ethical ways to take reponsibilities of your actions" }
-                ]
-            },
-           exams: {
-                    title: "📝 Examination Center",
-                    description: "Comprehensive resources for high‑stakes assessments.",
-                    items: [
-                        { 
-                            badge: "NEW", 
-                            title: "THEORY QUESTIONS", 
-                            description: "Full-length Legal Method Exam", 
-                            link: "../law/chapter-1.html", 
-                            linkText: "Preview" 
-                        },
-                        { 
-                            title: "Grading Rubrics", 
-                            description: "Standardized multiple-choice question evaluation metrics.",
-                            link: "./Exam_portal.html", 
-                            linkText: "Access Portal" 
-                        },
-                        { 
-                            title: "Past Papers", 
-                            description: "Archive of UNN 2012–2025 Exam." 
-                        }
-                    ]
-                },
-
-            contact: {
-                title: "📬 Connect",
-                email: "victoriustech54@gmail.com",
-                phone: "+234 8136962956"
-            },
-            imageGallery: {
-                images: [
-                    "./src/images/Screenshot_2026-06-12_132117-removebg-preview.png",
-                    "./src/images/Screenshot_2026-06-12_132204-removebg-preview.png",
-            
-                    // "./src/images/Screenshot_2026-06-18_170351-removebg-preview.png",
-                    "./src/images/Screenshot_2026-06-18_170457-removebg-preview.png"
-                
-                  
-                
-                ]
-            },
-            community: {
-                title: "Connect with others",
-                description: "Join our community to share insights and collaborate on projects.",
-                socialIcons: ["fa-whatsapp", "fa-twitter", "fa-telegram", "fa-linkedin-square", "fa-facebook-square"],
-                communityImage: "./src/images/community.png",
-                footerText: "Stay updated with the latest news and events."
-            }
+const firebaseConfig = {
+            apiKey: "AIzaSyBKBFcZb7Qkw0NZOR-vhQ0hm54GAa_6Zj4",
+            authDomain: "victorious-legal-lib.firebaseapp.com",
+            projectId: "victorious-legal-lib",
+            storageBucket: "victorious-legal-lib.firebasestorage.app",
+            messagingSenderId: "52708605227",
+            appId: "1:52708605227:web:c015708e9013eaee8a996e",
+            measurementId: "G-RYL0ZB25EL"
         };
 
-        // Helper function to render entire page from JSON
-        function renderPage() {
-            // Render navigation buttons
-            const scrollNav = document.getElementById('scrollNav');
-            scrollNav.innerHTML = siteData.navItems.map(item => 
-                `<button onclick="openTab('${item.id}')" class="inline-flex border-none font-semibold text-sm md:text-base py-2 px-4 md:py-[0.6rem] md:px-[1.4rem] rounded-full whitespace-nowrap transition-all" data-tab="${item.id}">${item.label}</button>`
-            ).join('');
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
 
-            // Render main content container
-            const appRoot = document.getElementById('app-root');
-            
-            // Build tabs HTML
-            let tabsHtml = `
-                <!-- HOME TAB -->
-                <div id="home" class="tab-content active">
-                    <div class="card-glow p-5 md:p-8 mb-8">
-                        <h1>${siteData.home.title}</h1>
-                        <p class="text-lg md:text-xl mt-2 mb-4">${siteData.home.subtitle}</p>
-                        <p>${siteData.home.description}</p>
-                        <div class="flex flex-wrap gap-4 mt-6">
-                            ${siteData.home.buttons.map(btn => `<div class="btn-soft py-2 px-5 inline-block" onclick="openTab('${btn.action}')">${btn.text}</div>`).join('')}
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PROJECTS TAB -->
-                <div id="projects" class="tab-content">
-                    <div class="card-glow p-5 md:p-8 mb-8">
-                        <h2>${siteData.projects.title}</h2>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
-                            ${siteData.projects.items.map(item => `
-                                <div class="grid-item">
-                                        <h3 class="text-xl font-bold text-white">${item.title}</h3>
-                                        <p class="text-white/90">${item.description}</p>
-                                    </a>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-                </div>
-
-                <!-- BOOKS TAB -->
-                <div id="books" class="tab-content">
-                    <div class="card-glow p-5 md:p-8 mb-8">
-                        <h2>${siteData.books.title}</h2>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
-                            ${siteData.books.items.map(item => `
-                                <div class="grid-item">
-                                    <h3 class="font-bold text-xl">${item.title}</h3>
-                                    <p>${item.description}</p>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-                </div>
-
-                <!-- TESTS TAB (Chapters) -->
-                <div id="test" class="tab-content">
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        ${siteData.test.chapters.map(ch => `
-                            <div class="card p-6">
-                                <h2 class="text-xl font-bold">${ch.title}</h2>
-                                <div class="instructions p-2 text-center"><strong>${ch.instructions}</strong></div>
-                                <ul class="list-disc pl-5 ${ch.topics.length > 15 ? 'columns-2 gap-3' : ''}">
-                                    ${ch.topics.map(topic => `<li>${topic}</li>`).join('')}
-                                </ul>
-                                <a href="${ch.link}" class="btn">CLICK TO ENTER EXAM</a>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-
-                <!-- ARTICLES TAB -->
-                <div id="articles" class="tab-content">
-                    <div class="card-glow p-5 md:p-8 mb-8">
-                        <h2>${siteData.articles.title}</h2>
-                        <ul class="list-none space-y-3 mt-4">
-                            ${siteData.articles.items.map(item => `<li>🔹 <strong>${item.text}</strong></li>`).join('')}
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- EXAMS TAB -->
-                <div id="exams" class="tab-content">
-                    <div class="card-glow p-5 md:p-8 mb-8">
-                        <h2>${siteData.exams.title}</h2>
-                        <p class="mb-6">${siteData.exams.description}</p>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            ${siteData.exams.items.map(item => `
-                                <div class="grid-item">
-                                    ${item.badge ? `<span class="badge-exam">${item.badge}</span>` : ''}
-                                    <h3 class="font-bold text-xl mt-2">${item.title}</h3>
-                                    <p>${item.description}</p>
-                                    ${item.link ? `<a href="${item.link}" target="_blank"><div class="btn-soft py-1.5 px-4 inline-block mt-2 text-sm">${item.linkText || 'Preview'}</div></a>` : ''}
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CONTACT TAB -->
-                <div id="contact" class="tab-content">
-                    <div class="card-glow p-5 md:p-8 mb-8">
-                        <h2>${siteData.contact.title}</h2>
-                        <div class="contact-form space-y-4 mt-4">
-                            <input type="text" id="contactName" placeholder="Your name" class="w-full py-3 px-4 rounded-2xl outline-none">
-                            <input type="email" id="contactEmail" placeholder="Email address" class="w-full py-3 px-4 rounded-2xl outline-none">
-                            <textarea rows="3" placeholder="Your message..." class="w-full py-3 px-4 rounded-2xl outline-none"></textarea>
-                            <div class="btn-soft py-3 px-6 text-center inline-block bg-purple-600 border-none hover:bg-purple-700" onclick="alert('✨ Demo: message sent (simulated)')">Send Message</div>
-                            <p class="text-sm mt-4">📧 ${siteData.contact.email} | 📞 ${siteData.contact.phone}</p>
-                        </div>
-                    </div>
-                </div>
-            `;
-
-            // Add image galleries (two rows)
-            // tabsHtml += `<div class="cards flex flex-wrap justify-center gap-5 my-8 list-none">`;
-            // siteData.imageGallery.images.forEach(img => {
-            //     tabsHtml += `<li><img src="${img}" alt="project" width="300" onerror="this.src='https://placehold.co/300x180?text=Project+Demo'"></li>`;
-            // });
-            tabsHtml += `</div><div class="cards flex flex-wrap justify-center gap-5 my-8 list-none">`;
-            siteData.imageGallery.images.forEach(img => {
-                tabsHtml += `<li><img src="${img}" alt="project" width="300" onerror="this.src='https://placehold.co/300x180?text=Project+Demo'"></li>`;
-            });
-            tabsHtml += `</div>`;
-
-            // Community Section
-            tabsHtml += `
-                <section class="mt-12 bg-[#192337]/55 backdrop-blur-md rounded-3xl p-6 md:p-8">
-                    <h3 class="text-center text-2xl font-semibold">${siteData.community.title}</h3>
-                    <p class="text-center">${siteData.community.description}</p>
-                    <div class="flex justify-center my-5">
-                        <img src="${siteData.community.communityImage}" alt="Community" class="max-w-full rounded-2xl" onerror="this.src='https://placehold.co/1000x300?text=Community+Hub'">
-                    </div>
-                    <ul class="flex justify-center gap-6 md:gap-10 flex-wrap text-sky-400 text-2xl list-none">
-                        ${siteData.community.socialIcons.map(icon => `<li><i class="fa ${icon}"></i></li>`).join('')}
-                    </ul>
-                    <p class="text-center mt-6">${siteData.community.footerText}</p>
-                </section>
-            `;
-
-            appRoot.innerHTML = tabsHtml;
+        // ---------- PASSWORD UTILITIES ----------
+        async function getPlainText(docId) {
+            try {
+                const docSnap = await db.collection('passwords').doc(docId).get();
+                return docSnap.exists ? docSnap.data().plainText : null;
+            } catch (err) { showToast("Error reading password: " + err.message, true); return null; }
         }
-
-        // Word changer (preserved)
-        const words = ["Cases", "Books", "Articles"];
-        let currentIndex = 0;
-        const wordElement = document.getElementById("word-changer");
-        function startWordLoop() {
-            setInterval(() => {
-                wordElement.classList.add("fade");
-                setTimeout(() => {
-                    currentIndex = (currentIndex + 1) % words.length;
-                    wordElement.textContent = words[currentIndex];
-                    wordElement.classList.remove("fade");
-                }, 500);
-            }, 4000);
+        async function setPlainText(docId, text) { await db.collection('passwords').doc(docId).set({ plainText: text }, { merge: true }); }
+        async function verifyAdminPassword(pwd) { const stored = await getPlainText('admin_password'); return { success: pwd === stored }; }
+        async function updateAdminPassword(current, newPw) {
+            const currentPlain = await getPlainText('admin_password');
+            if (current !== currentPlain) return { success: false, message: 'Current password incorrect' };
+            if (newPw.length < 4) return { success: false, message: 'Minimum 4 characters' };
+            await setPlainText('admin_password', newPw);
+            return { success: true, message: 'Admin password updated!' };
         }
+        async function resetAdminPasswordToDefault() { await setPlainText('admin_password', '0420');
+            showToast('✅ Admin password reset to default: 0420');
+            setTimeout(() => location.reload(), 1500); }
 
-        // openTab function (preserved logic)
-        function openTab(tabName) {
-            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-            const selectedTab = document.getElementById(tabName);
-            if (selectedTab) selectedTab.classList.add('active');
-            
-            const allNavButtons = document.querySelectorAll('.scroll-nav button');
-            allNavButtons.forEach(btn => {
-                btn.classList.remove('active');
-                let btnText = btn.innerText.trim().toLowerCase();
-                if (btnText === tabName.toLowerCase() || (tabName === 'test' && btnText === 'tests')) {
-                    btn.classList.add('active');
-                }
-            });
-            
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            if (window.innerWidth <= 850) {
-                const wrapper = document.getElementById('scrollNavWrapper');
-                if (wrapper && wrapper.classList.contains('show-nav')) {
-                    wrapper.classList.remove('show-nav');
-                    document.getElementById('barsIcon').style.display = 'inline-block';
-                    document.getElementById('closeIcon').style.display = 'none';
-                }
+        // ---------- GLOBAL VARIABLES ----------
+        let allCases = [];
+        let unsubscribeCases = null;
+        let isAdminLoggedIn = false;
+        let dataLoaded = false;
+
+        // User saved dashboard (localStorage)
+        let userSaved = JSON.parse(localStorage.getItem('vt_user_saved') || '[]');
+
+        function saveUserDashboard() { localStorage.setItem('vt_user_saved', JSON.stringify(userSaved));
+            updateDashboardUI(); }
+
+        function updateDashboardUI() {
+            const grid = document.getElementById('savedGrid');
+            const emptyMsg = document.getElementById('emptyDashboardMsg');
+            const countSpan = document.getElementById('savedCountBadge');
+            if (countSpan) countSpan.innerText = `${userSaved.length} saved`;
+            if (userSaved.length === 0) {
+                if (emptyMsg) emptyMsg.classList.remove('hidden');
+                if (grid) grid.innerHTML = '';
+                return;
             }
+            if (emptyMsg) emptyMsg.classList.add('hidden');
+            const savedArticles = allCases.filter(c => userSaved.includes(c.id));
+            grid.innerHTML = savedArticles.map(c => `
+      <div class="border border-gray-200 rounded-xl p-4 bg-white shadow-sm hover:shadow-md transition">
+        <div class="flex justify-between items-start"><h3 class="font-bold text-blue-900">${escapeHtml(c.name)}</h3><i class="fas fa-check-circle text-green-500"></i></div>
+        <p class="text-xs text-gray-500 mt-1">${escapeHtml(c.areaOfLaw)} • ${escapeHtml(c.court)}</p>
+        <p class="text-sm text-gray-600 mt-2">${escapeHtml((c.ratio||'').substring(0,100))}...</p>
+        <div class="flex justify-between mt-3"><button class="read-saved-btn text-blue-600 text-sm font-medium" data-id="${c.id}"><i class="fas fa-eye"></i> Read Full</button><button class="remove-saved-btn text-rose-500 text-sm" data-id="${c.id}"><i class="fas fa-trash-alt"></i> Remove</button></div>
+      </div>`).join('');
+            document.querySelectorAll('.read-saved-btn').forEach(btn => btn.addEventListener('click', () => openCaseReader(btn.dataset.id)));
+            document.querySelectorAll('.remove-saved-btn').forEach(btn => btn.addEventListener('click', () => { userSaved = userSaved.filter(id => id !== btn.dataset.id);
+                saveUserDashboard();
+                showToast('Removed from dashboard'); if (!document.getElementById('dashboardView').classList.contains('hidden'))
+                    updateDashboardUI(); }));
         }
 
-        // Hamburger toggle (preserved)
-        const hamburgerBtn = document.getElementById('hamburgerToggleBtn');
-        const barsIcon = document.getElementById('barsIcon');
-        const closeIcon = document.getElementById('closeIcon');
-        const scrollNavWrapper = document.getElementById('scrollNavWrapper');
-        
-        function toggleMobileNav() {
-            if (window.innerWidth <= 850) {
-                const isVisible = scrollNavWrapper.classList.contains('show-nav');
-                if (!isVisible) {
-                    scrollNavWrapper.classList.add('show-nav');
-                    barsIcon.style.display = 'none';
-                    closeIcon.style.display = 'inline-block';
-                } else {
-                    scrollNavWrapper.classList.remove('show-nav');
-                    barsIcon.style.display = 'inline-block';
-                    closeIcon.style.display = 'none';
-                }
+        function addToDashboard(caseId) {
+            if (userSaved.includes(caseId)) { showToast('Already in your dashboard', true); return false; }
+            userSaved.push(caseId);
+            saveUserDashboard();
+            showToast('✅ Saved to My Dashboard');
+            return true;
+        }
+
+        function formatDate(dateStr) { if (!dateStr) return "Unknown"; const d = new Date(dateStr); return d.toLocaleDateString(
+            'en-US', { year: 'numeric', month: 'long', day: 'numeric' }); }
+
+        function escapeHtml(str) { if (!str) return ''; return str.replace(/[&<>]/g, (m) => ({ '&': '&amp;', '<': '&lt;',
+                '>': '&gt;' } [m] || m)); }
+
+        function showToast(msg, isError = false) {
+            const toast = document.createElement('div');
+            toast.className =
+                `fixed bottom-6 right-6 bg-slate-800 text-white px-5 py-3 rounded-full z-50 shadow-lg text-sm ${isError ? 'bg-rose-700' : 'bg-slate-800'}`;
+            toast.innerHTML = `<i class="fas ${isError ? 'fa-exclamation-circle' : 'fa-check-circle'} mr-2"></i>${msg}`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 5000);
+        }
+
+        function renderPublicCases(searchTerm = "") {
+            const container = document.getElementById('casesContainer');
+            let filtered = allCases;
+            if (searchTerm) filtered = allCases.filter(c => (c.name || "").toLowerCase().includes(searchTerm) || (c
+                .areaOfLaw || "").toLowerCase().includes(searchTerm) || (c.court || "").toLowerCase().includes(
+                searchTerm) || (c.ratio || "").toLowerCase().includes(searchTerm) || (c.issues || "").toLowerCase()
+                .includes(searchTerm) || (c.facts || "").toLowerCase().includes(searchTerm) || (c.keywords || "")
+                .toLowerCase().includes(searchTerm));
+            document.getElementById('resultCount').innerText = `${filtered.length} case${filtered.length !== 1 ? 's' : ''}`;
+            if (filtered.length === 0) { container.innerHTML =
+                    `<div class="text-center py-12 bg-gray-50 rounded-xl"><i class="fas fa-search text-gray-400 text-4xl mb-3"></i><p class="text-gray-500">No cases found.</p></div>`;
+                return; }
+            container.innerHTML = filtered.map(c =>
+                `<div class="case-card bg-white border border-gray-200 rounded-xl p-5 shadow-sm hover:shadow-md" data-id="${c.id}"><div><h3 class="text-lg font-extrabold text-blue-900">${escapeHtml(c.name)}</h3><div class="flex flex-wrap gap-2 mt-1"><span class="text-xs bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full">${escapeHtml(c.areaOfLaw)}</span><span class="text-xs bg-green-100 text-green-800 px-2 py-0.5 rounded-full">${escapeHtml(c.specificArea)}</span><span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">${escapeHtml(c.court)}</span><span class="text-xs text-gray-400">${formatDate(c.date)}</span></div></div><div class="mt-3"><p class="text-sm text-gray-600"><strong>Issue:</strong> ${escapeHtml((c.issues || "").substring(0, 120))}...</p></div><div class="flex justify-between items-center mt-2"><span class="text-xs text-blue-600 hover:underline cursor-pointer read-case-trigger" data-id="${c.id}"><i class="fas fa-book-open"></i> Read Complete Case →</span><button class="save-to-dashboard text-amber-600 text-xs font-medium bg-amber-50 px-3 py-1 rounded-full" data-id="${c.id}"><i class="fas fa-save mr-1"></i> Save to My Dashboard</button></div></div>`
+                ).join('');
+            document.querySelectorAll('.read-case-trigger').forEach(el => el.addEventListener('click', (e) => { e
+                    .stopPropagation();
+                openCaseReader(el.dataset.id); }));
+            document.querySelectorAll('.save-to-dashboard').forEach(el => el.addEventListener('click', (e) => { e
+                    .stopPropagation();
+                addToDashboard(el.dataset.id); }));
+            document.querySelectorAll('.case-card').forEach(card => card.addEventListener('click', (e) => { if (!e
+                    .target.closest('button')) openCaseReader(card.dataset.id); }));
+        }
+
+        // UPDATED READER: PRESERVES TEXT FORMATTING
+        function openCaseReader(caseId) {
+            const c = allCases.find(c => c.id === caseId);
+            if (!c) return;
+
+            const formatBlock = (text) => {
+                if (!text) return '';
+                return `<div class="reader-text-block" style="white-space: pre-wrap; word-wrap: break-word; font-family: 'Georgia', serif; line-height: 1.7;">${escapeHtml(text)}</div>`;
+            };
+
+            const content = `
+      <div class="reader-content">
+        <h2 class="text-2xl font-bold text-amber-900">${escapeHtml(c.name)}</h2>
+        <div class="flex flex-wrap gap-2 my-2 text-sm">
+          <span class="bg-amber-100 px-2 py-0.5 rounded">${escapeHtml(c.areaOfLaw)}</span>
+          <span class="bg-amber-100 px-2 py-0.5 rounded">${escapeHtml(c.court)}</span>
+          <span class="text-gray-600">${formatDate(c.date)}</span>
+        </div>
+
+        <div class="mt-5">
+          <div class="heading-holdings">FACTS</div>
+          ${formatBlock(c.facts)}
+        </div>
+
+        <div class="mt-5">
+          <div class="heading-holdings">ISSUES</div>
+          ${formatBlock(c.issues)}
+        </div>
+
+        <div class="mt-5">
+          <div class="heading-holdings">RATIO DECIDENDI & HOLDINGS</div>
+          <div class="ratio-text" style="background: #fbf3e3; padding: 1.2rem 1.8rem; border-left: 8px solid #b45309; white-space: pre-wrap; font-family: 'Georgia', serif; line-height: 1.7;">
+            ${escapeHtml(c.ratio)}
+          </div>
+        </div>
+
+        <div class="mt-4 text-sm text-gray-600">
+          <strong>Keywords:</strong> ${escapeHtml(c.keywords || '')}
+        </div>
+
+        <div class="mt-6">
+          <button id="readerSaveBtn" class="bg-amber-600 text-white px-4 py-2 rounded-full text-sm" data-id="${c.id}">
+            <i class="fas fa-save mr-1"></i> Save to My Dashboard
+          </button>
+        </div>
+      </div>
+      `;
+
+            document.getElementById('readerContent').innerHTML = content;
+            document.getElementById('readerModal').classList.remove('hidden');
+            document.getElementById('readerSaveBtn')?.addEventListener('click', () => addToDashboard(c.id));
+        }
+
+        function refreshRecent() {
+            const sorted = [...allCases].sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 5);
+            const sidebar = document.getElementById('recentUpdatesContainer');
+            if (sidebar) sidebar.innerHTML = sorted.map(c =>
+                `<div class="border-l-4 border-blue-500 pl-3 pb-2 bg-gray-50 rounded-r-lg p-3 cursor-pointer recent-case-item" data-id="${c.id}"><p class="font-bold text-sm text-gray-800">${escapeHtml(c.name)}</p><p class="text-xs text-gray-500">${escapeHtml(c.areaOfLaw)} | ${escapeHtml(c.court)}</p><p class="text-xs text-blue-700 mt-1"><i class="fas fa-quote-left"></i> ${escapeHtml((c.ratio || "").substring(0, 80))}...</p><span class="text-green-700 text-xs font-semibold">Read Full →</span></div>`
+                ).join('');
+            document.querySelectorAll('.recent-case-item').forEach(el => el.addEventListener('click', () =>
+            openCaseReader(el.dataset.id)));
+            const drawer = document.getElementById('mobileDrawerRecentList');
+            if (drawer) drawer.innerHTML = sorted.map(c =>
+                `<div class="bg-white rounded-xl p-3 shadow-sm border cursor-pointer drawer-case-item" data-id="${c.id}"><div class="font-bold text-blue-900 text-sm">${escapeHtml(c.name)}</div><div class="text-xs text-gray-500">${escapeHtml(c.court)}</div><p class="text-xs text-gray-600 mt-1">${escapeHtml((c.ratio || "").substring(0, 90))}…</p><div class="text-right mt-1 text-amber-700 text-xs">read ratio</div></div>`
+                ).join('');
+            document.querySelectorAll('.drawer-case-item').forEach(el => el.addEventListener('click', () => {
+                openCaseReader(el.dataset.id);
+                closeMobileDrawer();
+            }));
+        }
+
+        function renderAdminTable() {
+            const tbody = document.getElementById('adminCasesTableBody');
+            if (!tbody) return;
+            tbody.innerHTML = allCases.map(c =>
+                `<tr class="border-b"><td class="p-2">${c.id.slice(0,6)}</td><td class="p-2 font-medium">${escapeHtml(c.name)}</td><td class="p-2">${escapeHtml(c.areaOfLaw)}</td><td class="p-2">${escapeHtml(c.court)}</td><td class="p-2">${formatDate(c.date)}</td><td class="p-2 text-center"><button class="edit-case-btn bg-yellow-500 text-white px-2 py-1 rounded text-xs mr-1" data-id="${c.id}">Edit</button><button class="delete-case-btn bg-red-600 text-white px-2 py-1 rounded text-xs" data-id="${c.id}">Del</button></td></tr>`
+                ).join('');
+            document.querySelectorAll('.delete-case-btn').forEach(btn => btn.addEventListener('click', async () => { if (
+                    confirm('Delete case?')) await db.collection('cases').doc(btn.dataset.id).delete().then(() =>
+                    showToast("Deleted")).catch(e => showToast("Delete failed: " + e.message, true)); }));
+            document.querySelectorAll('.edit-case-btn').forEach(btn => btn.addEventListener('click', async () => { const
+                    id = btn.dataset.id;
+                const cas = allCases.find(c => c.id === id); if (cas) { const newName = prompt("Edit case name", cas
+                        .name); if (newName) await db.collection('cases').doc(id).update({ name: newName }).catch(
+                        e => showToast("Edit failed: " + e.message, true)); } }));
+        }
+
+        function startCasesListener() {
+            if (unsubscribeCases) unsubscribeCases();
+            unsubscribeCases = db.collection('cases').orderBy('date', 'desc').onSnapshot(snapshot => {
+                allCases = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                renderPublicCases(document.getElementById('searchInput').value.toLowerCase());
+                refreshRecent();
+                document.getElementById('statCases').innerText = allCases.length + "+";
+                if (isAdminLoggedIn && document.getElementById('adminDashboardArea') && !document.getElementById(
+                        'adminDashboardArea').classList.contains('hidden')) renderAdminTable();
+                updateDashboardUI();
+                dataLoaded = true;
+                // Hide preloader once data is loaded
+                const pre = document.getElementById('preloader');
+                if (pre) { pre.classList.add('fade-out');
+                    setTimeout(() => pre.style.display = 'none', 600); }
+            }, err => { console.error(err); if (err.code === 'permission-denied') showToast(
+                    "Read permission denied. Check Firestore rules.", true); });
+        }
+
+        // ---------- ADMIN UI LOGIC ----------
+        const adminModal = document.getElementById('adminModal');
+        const adminLoginDiv = document.getElementById('adminLoginArea');
+        const adminDashboardDiv = document.getElementById('adminDashboardArea');
+        const verifyBtn = document.getElementById('verifyAdminBtn');
+        const adminPasswordInput = document.getElementById('adminPasswordInput');
+        const loginError = document.getElementById('loginError');
+        const resetPassBtn = document.getElementById('resetPasswordsBtn');
+        const changeAdminPassBtn = document.getElementById('changeAdminPasswordBtn');
+        const adminPassMsg = document.getElementById('adminPassMsg');
+        const closeAdminModal = document.getElementById('closeAdminModalBtn');
+        const addNewCaseBtn = document.getElementById('addNewCaseAdminBtn');
+        const adminAddForm = document.getElementById('adminAddForm');
+        const cancelAdd = document.getElementById('cancelAdminAddForm');
+        const submitNewCase = document.getElementById('submitAdminNewCase');
+
+        async function handleAdminLogin() {
+            const pwd = adminPasswordInput.value;
+            const res = await verifyAdminPassword(pwd);
+            if (res.success) {
+                adminLoginDiv.classList.add('hidden');
+                adminDashboardDiv.classList.remove('hidden');
+                isAdminLoggedIn = true;
+                renderAdminTable();
+                showToast("Admin access granted");
             } else {
-                scrollNavWrapper.classList.remove('show-nav');
-                barsIcon.style.display = 'inline-block';
-                closeIcon.style.display = 'none';
+                loginError.innerText = "Invalid password";
+                loginError.classList.remove('hidden');
             }
         }
-        
-        if (hamburgerBtn) {
-            hamburgerBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                toggleMobileNav();
-            });
-        }
-        
-        window.addEventListener('resize', function() {
-            if (window.innerWidth > 850) {
-                scrollNavWrapper.classList.remove('show-nav');
-                barsIcon.style.display = 'inline-block';
-                closeIcon.style.display = 'none';
-            } else {
-                if (scrollNavWrapper.classList.contains('show-nav')) {
-                    barsIcon.style.display = 'none';
-                    closeIcon.style.display = 'inline-block';
-                } else {
-                    barsIcon.style.display = 'inline-block';
-                    closeIcon.style.display = 'none';
+        verifyBtn.addEventListener('click', handleAdminLogin);
+        resetPassBtn.addEventListener('click', async () => { if (confirm("Reset admin password to default '0420'?"))
+                await resetAdminPasswordToDefault(); });
+        changeAdminPassBtn.addEventListener('click', async () => {
+            const old = document.getElementById('oldAdminPass').value;
+            const newP = document.getElementById('newAdminPass').value;
+            const conf = document.getElementById('confirmAdminPass').value;
+            if (newP !== conf) { adminPassMsg.innerHTML = '<span class="text-red-600">New password mismatch</span>';
+                return; }
+            const res = await updateAdminPassword(old, newP);
+            adminPassMsg.innerHTML =
+                `<span class="${res.success ? 'text-green-600' : 'text-red-600'}">${res.message}</span>`;
+            if (res.success) { document.getElementById('oldAdminPass').value = '';
+                document.getElementById('newAdminPass').value = '';
+                document.getElementById('confirmAdminPass').value = ''; }
+        });
+        addNewCaseBtn.addEventListener('click', () => adminAddForm.classList.toggle('hidden'));
+        cancelAdd.addEventListener('click', () => adminAddForm.classList.add('hidden'));
+        submitNewCase.addEventListener('click', async () => {
+            const name = document.getElementById('adminCaseName').value.trim();
+            const court = document.getElementById('adminCaseCourt').value.trim();
+            const issues = document.getElementById('adminIssues').value.trim();
+            const facts = document.getElementById('adminFacts').value.trim();
+            const ratio = document.getElementById('adminRatio').value.trim();
+            if (!name || !court || !issues || !facts || !ratio) return alert("Required fields missing");
+            const newCase = {
+                name,
+                areaOfLaw: document.getElementById('adminAreaOfLaw').value,
+                specificArea: document.getElementById('adminSpecificArea').value.trim() || "General",
+                court,
+                date: document.getElementById('adminCaseDate').value || new Date().toISOString().slice(0, 10),
+                issues,
+                facts,
+                ratio,
+                keywords: document.getElementById('adminKeywords').value.trim() || "custom"
+            };
+            try {
+                await db.collection('cases').add(newCase);
+                showToast("✅ Case added successfully!");
+                adminAddForm.classList.add('hidden');
+                document.getElementById('adminCaseName').value = '';
+                document.getElementById('adminCaseCourt').value = '';
+                document.getElementById('adminIssues').value = '';
+                document.getElementById('adminFacts').value = '';
+                document.getElementById('adminRatio').value = '';
+                document.getElementById('adminSpecificArea').value = '';
+                document.getElementById('adminKeywords').value = '';
+            } catch (err) { showToast("Add failed: " + err.message, true); }
+        });
+
+        // Navigation
+        const libView = document.getElementById('libraryView');
+        const dashView = document.getElementById('dashboardView');
+
+        function showLibrary() { libView.classList.remove('hidden');
+            dashView.classList.add('hidden'); }
+
+        function showDashboard() { libView.classList.add('hidden');
+            dashView.classList.remove('hidden');
+            updateDashboardUI(); }
+        document.getElementById('navLibraryBtn')?.addEventListener('click', showLibrary);
+        document.getElementById('navDashboardBtn')?.addEventListener('click', showDashboard);
+        document.getElementById('mobileNavLibrary')?.addEventListener('click', showLibrary);
+        document.getElementById('mobileNavDashboard')?.addEventListener('click', showDashboard);
+
+        // UI event listeners
+        document.getElementById('adminPanelBtn').addEventListener('click', () => adminModal.classList.remove('hidden'));
+        document.getElementById('mobileAdminBtn').addEventListener('click', () => adminModal.classList.remove('hidden'));
+        closeAdminModal.addEventListener('click', () => adminModal.classList.add('hidden'));
+        document.getElementById('searchBtn').addEventListener('click', () => renderPublicCases(document.getElementById(
+            'searchInput').value.toLowerCase()));
+        document.getElementById('searchInput').addEventListener('keyup', (e) => { if (e.key === 'Enter')
+            renderPublicCases(e.target.value.toLowerCase()); });
+        document.getElementById('closeReaderBtn').addEventListener('click', () => document.getElementById('readerModal')
+            .classList.add('hidden'));
+        document.getElementById('readerModal').addEventListener('click', (e) => { if (e.target === document.getElementById(
+                'readerModal')) document.getElementById('readerModal').classList.add('hidden'); });
+
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn'),
+            mobileMenu = document.getElementById('mobileMenu');
+        if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+        const floatBtn = document.getElementById('mobileRecentFloatBtn'),
+            overlay = document.getElementById('mobileRecentOverlay'),
+            closeDrawer = document.getElementById('closeDrawerBtn');
+
+        function closeMobileDrawer() { overlay.classList.remove('show'); }
+        floatBtn.addEventListener('click', () => overlay.classList.add('show'));
+        closeDrawer.addEventListener('click', closeMobileDrawer);
+        overlay.addEventListener('click', (e) => { if (e.target === overlay) closeMobileDrawer(); });
+
+        // Initialize App
+        window.addEventListener('load', async () => {
+            startCasesListener();
+            // Fallback: hide preloader after 5 seconds even if data hasn't loaded
+            setTimeout(() => {
+                const pre = document.getElementById('preloader');
+                if (pre && !pre.classList.contains('fade-out')) {
+                    pre.classList.add('fade-out');
+                    setTimeout(() => pre.style.display = 'none', 600);
                 }
-            }
-            setStickyOffsets();
+            }, 5000);
         });
-        
-        function setStickyOffsets() {
-            const searchSticky = document.getElementById('stickySearchContainer');
-            const nav = document.querySelector('.navi');
-            if (searchSticky && nav) {
-                nav.style.top = searchSticky.offsetHeight + 'px';
-            }
-        }
-        
-        // Search simulation (preserved)
-        const searchInput = document.getElementById('globalSearchInput');
-        const searchBtn = document.getElementById('searchBtn');
-        function handleSearch() {
-            let query = searchInput.value.trim();
-            if (query) alert(`🔍 Searching for "${query}" (demo feature - full search integration available)`);
-            else alert('Please enter a search term.');
-        }
-        if (searchBtn) searchBtn.addEventListener('click', handleSearch);
-        if (searchInput) searchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleSearch(); });
-        
-        // Initialize page
-        renderPage();
-        startWordLoop();
-        
-        document.addEventListener('DOMContentLoaded', () => {
-            // Set active class on initial active tab
-            const activeTab = document.querySelector('.tab-content.active');
-            if (activeTab) {
-                const id = activeTab.getAttribute('id');
-                document.querySelectorAll('.scroll-nav button').forEach(btn => {
-                    let btnText = btn.innerText.trim().toLowerCase();
-                    if (btnText === id.toLowerCase() || (id === 'test' && btnText === 'tests')) btn.classList.add('active');
-                });
-            }
-            if (window.innerWidth <= 850) {
-                scrollNavWrapper.classList.remove('show-nav');
-                barsIcon.style.display = 'inline-block';
-                closeIcon.style.display = 'none';
-            }
-            setStickyOffsets();
-        });
-        
-        window.addEventListener('load', setStickyOffsets);
-          window.addEventListener('resize', setStickyOffsets);
-          (function() {
-      const createElegantNotice = (msg, type = 'default') => {
-        const toast = document.createElement('div');
-        toast.innerText = msg;
-        toast.style.position = 'fixed';
-        toast.style.bottom = '28px';
-        toast.style.left = '50%';
-        toast.style.transform = 'translateX(-50%)';
-        toast.style.backgroundColor = '#1e1a2f';
-        toast.style.backdropFilter = 'blur(16px)';
-        toast.style.color = type === 'case' ? '#f0c4e8' : '#d9c9ff';
-        toast.style.padding = '10px 24px';
-        toast.style.borderRadius = '100px';
-        toast.style.fontSize = '0.75rem';
-        toast.style.fontWeight = '500';
-        toast.style.fontFamily = "'Inter', system-ui";
-        toast.style.border = type === 'case' ? '1px solid rgba(236, 72, 153, 0.5)' : '1px solid rgba(168, 85, 247, 0.5)';
-        toast.style.boxShadow = '0 8px 22px -6px rgba(0, 0, 0, 0.4)';
-        toast.style.zIndex = '9999';
-        toast.style.letterSpacing = '0.3px';
-        toast.style.pointerEvents = 'none';
-        document.body.appendChild(toast);
-        setTimeout(() => {
-          toast.style.transition = 'opacity 0.4s ease';
-          toast.style.opacity = '0';
-          setTimeout(() => toast.remove(), 500);
-        }, 1900);
-      };
-      
-      // Attach to all "Explore Slides" buttons
-      document.querySelectorAll('.btn-slide').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.preventDefault();
-          const parentCard = btn.closest('.law-card');
-          const title = parentCard?.querySelector('h2')?.innerText || 'Legal doctrine';
-          console.log(`[Juris] Accessing lecture slides: ${title}`);
-          createElegantNotice(`📽️ Opening slide deck for "${title}" — interactive materials`, 'slide');
-        });
-      });
-      
-      // Attach to all "Explore Cases" buttons
-      document.querySelectorAll('.btn-case').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.preventDefault();
-          const parentCard = btn.closest('.law-card');
-          const title = parentCard?.querySelector('h2')?.innerText || 'Legal doctrine';
-          console.log(`[Juris] Accessing case library: ${title}`);
-          createElegantNotice(`⚖️ Loading landmark cases & precedents for "${title}"`, 'case');
-        });
-      });
-    })();
-      // PRELOADER LOGIC: fade out after page fully loaded
-        window.addEventListener('load', function() {
-            const preloader = document.getElementById('preloader');
-            if (preloader) {
-                preloader.classList.add('fade-out');
-                setTimeout(() => {
-                    preloader.style.display = 'none';
-                }, 700);
-            }
-        });
-
-        // Mobile menu toggle
-        const mobileBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        if (mobileBtn && mobileMenu) {
-            mobileBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-        }
-document.getElementById('articles').addEventListener('click', function() {
-    window.location.href = './Articles.html'; 
-    
-});
-
-      
-        allSlideBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                notifyFeature('📑 Slides & Lecture notes');
-            });
-        });
-        allCaseBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                notifyFeature('⚖️ Landmark Cases & Analysis');
-            });
-        });
-          // PRELOADER LOGIC: fade out after page fully loaded
-        window.addEventListener('load', function() {
-            const preloader = document.getElementById('preloader');
-            if (preloader) {
-                preloader.classList.add('fade-out');
-                setTimeout(() => {
-                    preloader.style.display = 'none';
-                }, 700);
-            }
-        });
-
-
-
-        //     const myma = document.getElementById("");
-        // console.log(myma);
-        // const mymodal = document.getElementById("");
-        // console.log(mymodal);
-
-//        
-               

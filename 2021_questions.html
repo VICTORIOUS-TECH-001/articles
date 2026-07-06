@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Your existing custom styles (unchanged) -->
+    <link rel="stylesheet" href="./src/css/2021.css">
+    <!-- Additional style for text justification (does not affect logic) -->
+    <style>
+        /* Force justification on all text blocks – works alongside Tailwind */
+        p,
+        .instructions p,
+        .qbody p,
+        .sub-q p,
+        .correction-box,
+        .answer-preview,
+        .correction-preview,
+        .history-card .hcard-body .answer-preview,
+        .history-card .hcard-body .correction-preview {
+            text-align: justify !important;
+            hyphens: auto;
+            word-break: break-word;
+        }
+        /* Ensure lists and other elements are also justified if needed */
+        .qbody .sub-q {
+            text-align: justify;
+        }
+    </style>
+    <title>LAW 132 · LEGAL METHODS II · EXAM SYSTEM</title>
+</head>
+<body>
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="#" class="active" data-view="home">Home</a>
+            <a href="#" data-view="history">📜 History <span class="badge-history" id="historyBadge">0</span></a>
+            <button class="btn-restart" id="restartBtn">⟳ Restart Exam</button>
+        </div>
+    </nav>
+    <div class="toast" id="toast"></div>
+    <div class="paper">
+        <div class="view active" id="view-home">
+            <div class="exam-header">
+                <div class="uni-name">University of Nigeria, Enugu Campus</div>
+                <div class="uni-sub">Faculty of Law</div>
+                <div class="exam-title">Second Semester Examination</div>
+                <div style="font-size:20px;font-weight:700;letter-spacing:1px;color:#1a1a1a;margin:6px 0 2px;">LAW 132: LEGAL METHODS II</div>
+                <div class="exam-meta">
+                    <span><b>Date:</b> 15/11/21</span>
+                    <span><b>Session:</b> 2020/2021</span>
+                    <span><b>Time:</b> 2 Hours</span>
+                </div>
+            </div>
+
+            <!-- INSTRUCTIONS -->
+            <div class="instructions">
+                <h2>⸻ Instruction ⸻</h2>
+                <p><span class="highlight">ATTEMPT THREE (3) QUESTIONS.</span></p>
+                <p><span class="highlight">ONE QUESTION AT LEAST MUST BE ANSWERED FROM EACH SECTION.</span></p>
+                <p>Each question has an individual <b>30‑minute</b> countdown timer.</p>
+                <p class="note">➤ Submit your answer before starting another question.</p>
+            </div>
+
+            <!-- SECTION A -->
+            <div class="section-divider">Section A</div>
+
+            <!-- Q1 -->
+            <div class="question" id="q1">
+                <div class="qhead">
+                    <h2>Question 1</h2>
+                    <div class="timer" id="timer1">30:00</div>
+                </div>
+                <div class="qbody">
+                    <p><i>"The draftsman… conceived certainty, but brought forth obscurity, sometimes even absurdity"</i> (Lord Denning in his book, <i>The Discipline of Law</i>). In such a situation, the law becomes an ass. With the aid of legal authorities, explain how the <b>Legislature</b> can mitigate such misinterpretation of statute law.</p>
+
+                    <div class="action-row">
+                        <button class="btn-start" data-q="1">Start Exam</button>
+                        <button class="btn-submit" data-q="1" disabled>Submit Answer</button>
+                    </div>
+
+                    <div class="textarea-wrapper clearfix">
+                        <textarea id="answer1" disabled placeholder="Write your answer here…"></textarea>
+                        <div class="textarea-timer" id="timer1_inline">30:00</div>
+                    </div>
+
+                    <div id="correction1" class="correction-box"></div>
+                </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="question" id="q2">
+                <div class="qhead">
+                    <h2>Question 2</h2>
+                    <div class="timer" id="timer2">30:00</div>
+                </div>
+                <div class="qbody">
+                    <p>A proposed law could eventually become a law subject to certain laid down procedures. <b>Outline and discuss</b> these procedures.</p>
+
+                    <div class="action-row">
+                        <button class="btn-start" data-q="2">Start Exam</button>
+                        <button class="btn-submit" data-q="2" disabled>Submit Answer</button>
+                    </div>
+
+                    <div class="textarea-wrapper clearfix">
+                        <textarea id="answer2" disabled placeholder="Write your answer here…"></textarea>
+                        <div class="textarea-timer" id="timer2_inline">30:00</div>
+                    </div>
+
+                    <div id="correction2" class="correction-box"></div>
+                </div>
+            </div>
+
+            <!-- SECTION B -->
+            <div class="section-divider">Section B</div>
+
+            <!-- Q3 -->
+            <div class="question" id="q3">
+                <div class="qhead">
+                    <h2>Question 3</h2>
+                    <div class="timer" id="timer3">30:00</div>
+                </div>
+                <div class="qbody">
+                    <p><b>Chidinma Agbo</b> and <b>Mercy Edet</b>, students of UNEC resident at New Hostel, were arraigned at the High Court for playing Davido's latest song next to Wizkid's daughter's bed. They were convicted for offending the sensibilities of the daughter of a high-ranking citizen of the Federal Republic of Nigeria and sentenced to death by firing squad. Aggrieved, the girls have come to you for help. Relying on the judgment in <i>Aoko v. Fagbemi &amp; Anor</i> (1961) 1 ANLR 400 as well as the relevant section of the Constitution, <b>section 36(12)</b>, which expressly states that a person shall not be convicted of an offence not known to Law, you have decided to appeal the case.</p>
+                    <div class="sub-q">
+                        <p><b>(a)</b> Prepare the <b>appellants' brief</b> using the facts above.</p>
+                        <p><b>(b)</b> Briefly discuss the effect of failure to file briefs within the period prescribed by law.</p>
+                    </div>
+
+                    <div class="action-row">
+                        <button class="btn-start" data-q="3">Start Exam</button>
+                        <button class="btn-submit" data-q="3" disabled>Submit Answer</button>
+                    </div>
+
+                    <div class="textarea-wrapper clearfix">
+                        <textarea id="answer3" disabled placeholder="Write your answer here…"></textarea>
+                        <div class="textarea-timer" id="timer3_inline">30:00</div>
+                    </div>
+
+                    <div id="correction3" class="correction-box"></div>
+                </div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="question" id="q4">
+                <div class="qhead">
+                    <h2>Question 4</h2>
+                    <div class="timer" id="timer4">30:00</div>
+                </div>
+                <div class="qbody">
+                    <p><b>(a)</b> John was robbed on his way back from school on the 4th day of November, 2022 at the New Haven junction, Enugu, Enugu State. He lost his national ID cards, cellphone and laptop. He desires to make an official report at the New Haven police station. <b>How would he do this using an affidavit of not more than six paragraphs?</b></p>
+                    <p><b>(b)</b> Law libraries play a vital role in the lives of legal professionals. <b>Discuss.</b></p>
+
+                    <div class="action-row">
+                        <button class="btn-start" data-q="4">Start Exam</button>
+                        <button class="btn-submit" data-q="4" disabled>Submit Answer</button>
+                    </div>
+
+                    <div class="textarea-wrapper clearfix">
+                        <textarea id="answer4" disabled placeholder="Write your answer here…"></textarea>
+                        <div class="textarea-timer" id="timer4_inline">30:00</div>
+                    </div>
+
+                    <div id="correction4" class="correction-box"></div>
+                </div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="question" id="q5">
+                <div class="qhead">
+                    <h2>Question 5</h2>
+                    <div class="timer" id="timer5">30:00</div>
+                </div>
+                <div class="qbody">
+                    <p><b>(a)</b> Explain what you understand by the following concepts:</p>
+                    <div class="sub-q">
+                        <p><b>(i)</b> Judicial Precedent</p>
+                        <p><b>(ii)</b> Ratio Decidendi</p>
+                        <p><b>(iii)</b> Obiter Dicta</p>
+                    </div>
+                    <p><b>(b)</b> <i>"Nigerian Legal system is an admixture of Received English Law and Customary/Muslim Law".</i> <b>Discuss.</b></p>
+
+                    <div class="action-row">
+                        <button class="btn-start" data-q="5">Start Exam</button>
+                        <button class="btn-submit" data-q="5" disabled>Submit Answer</button>
+                    </div>
+
+                    <div class="textarea-wrapper clearfix">
+                        <textarea id="answer5" disabled placeholder="Write your answer here…"></textarea>
+                        <div class="textarea-timer" id="timer5_inline">30:00</div>
+                    </div>
+
+                    <div id="correction5" class="correction-box"></div>
+                </div>
+            </div>
+
+            <!-- FOOTER -->
+            <div class="exam-footer">
+                <strong>Questions answered:</strong>
+                <span class="count-badge" id="count">0</span>
+                <strong> / 3</strong>
+                &nbsp;&nbsp;|&nbsp;&nbsp;
+                <span class="status-msg" id="statusMsg">Start a question to begin.</span>
+            </div>
+        </div>
+
+        <!-- ─── VIEW: HISTORY ─── -->
+        <div class="view" id="view-history">
+            <div class="history-header">
+                <h2>📜 Practice History</h2>
+                <button class="clear-all" id="clearAllHistory">🗑️ Clear All History</button>
+            </div>
+            <div id="historyListContainer">
+                <!-- dynamically rendered -->
+            </div>
+        </div>
+
+    </div><!-- /.paper -->
+
+    <!-- Your existing JavaScript (unchanged) -->
+    <script src="./src/JS/2021.js"></script>
+
+</body>
+</html>
